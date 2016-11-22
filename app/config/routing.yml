@@ -1,3 +1,7 @@
-app:
-    resource: "@AppBundle/Controller/"
+vehicle:
+    resource: "@VehicleBundle/Controller/"
     type:     annotation
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

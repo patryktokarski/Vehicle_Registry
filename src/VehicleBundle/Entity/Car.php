@@ -1,0 +1,296 @@
+<?php
+
+namespace VehicleBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Car
+ *
+ * @ORM\Table(name="car")
+ * @ORM\Entity(repositoryClass="VehicleBundle\Repository\CarRepository")
+ */
+class Car
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="brand", type="string", length=255)
+     */
+    private $brand;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="model", type="string", length=255)
+     */
+    private $model;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="capacity", type="float")
+     */
+    private $capacity;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="power", type="integer")
+     */
+    private $power;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="first_registration", type="datetime")
+     */
+    private $firstRegistration;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param string $brand
+     * @return Car
+     */
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return string 
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    /**
+     * Set model
+     *
+     * @param string $model
+     * @return Car
+     */
+    public function setModel($model)
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+
+    /**
+     * Get model
+     *
+     * @return string 
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Set capacity
+     *
+     * @param float $capacity
+     * @return Car
+     */
+    public function setCapacity($capacity)
+    {
+        $this->capacity = $capacity;
+
+        return $this;
+    }
+
+    /**
+     * Get capacity
+     *
+     * @return float 
+     */
+    public function getCapacity()
+    {
+        return $this->capacity;
+    }
+
+    /**
+     * Set power
+     *
+     * @param integer $power
+     * @return Car
+     */
+    public function setPower($power)
+    {
+        $this->power = $power;
+
+        return $this;
+    }
+
+    /**
+     * Get power
+     *
+     * @return integer 
+     */
+    public function getPower()
+    {
+        return $this->power;
+    }
+
+    /**
+     * Set firstRegistration
+     *
+     * @param \DateTime $firstRegistration
+     * @return Car
+     */
+    public function setFirstRegistration($firstRegistration)
+    {
+        $this->firstRegistration = $firstRegistration;
+
+        return $this;
+    }
+
+    /**
+     * Get firstRegistration
+     *
+     * @return \DateTime 
+     */
+    public function getFirstRegistration()
+    {
+        return $this->firstRegistration;
+    }
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Repair", mappedBy="car")
+    */
+    private $repairs;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Refuel", mappedBy="car")
+     */
+    private $refuels;
+
+    public function __construct() {
+        $this->repairs = new ArrayCollection();
+        $this->refuels = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="cars")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+
+    /**
+     * Add repairs
+     *
+     * @param \VehicleBundle\Entity\Repair $repairs
+     * @return Car
+     */
+    public function addRepair(\VehicleBundle\Entity\Repair $repairs)
+    {
+        $this->repairs[] = $repairs;
+
+        return $this;
+    }
+
+    /**
+     * Remove repairs
+     *
+     * @param \VehicleBundle\Entity\Repair $repairs
+     */
+    public function removeRepair(\VehicleBundle\Entity\Repair $repairs)
+    {
+        $this->repairs->removeElement($repairs);
+    }
+
+    /**
+     * Get repairs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRepairs()
+    {
+        return $this->repairs;
+    }
+
+    /**
+     * Add refuels
+     *
+     * @param \VehicleBundle\Entity\Refuel $refuels
+     * @return Car
+     */
+    public function addRefuel(\VehicleBundle\Entity\Refuel $refuels)
+    {
+        $this->refuels[] = $refuels;
+
+        return $this;
+    }
+
+    /**
+     * Remove refuels
+     *
+     * @param \VehicleBundle\Entity\Refuel $refuels
+     */
+    public function removeRefuel(\VehicleBundle\Entity\Refuel $refuels)
+    {
+        $this->refuels->removeElement($refuels);
+    }
+
+    /**
+     * Get refuels
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRefuels()
+    {
+        return $this->refuels;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \VehicleBundle\Entity\User $user
+     * @return Car
+     */
+    public function setUser(\VehicleBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \VehicleBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}

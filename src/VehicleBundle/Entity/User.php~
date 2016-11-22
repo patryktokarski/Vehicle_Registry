@@ -1,0 +1,38 @@
+<?php
+
+namespace VehicleBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="fos_user")
+ * @ORM\Entity
+ */
+class User extends BaseUser
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Car", mappedBy="user")
+     */
+    private $cars;
+
+    public function __construct() {
+        parent::__construct();
+        $this->cars = new ArrayCollection();
+    }
+    
+    
+
+}
