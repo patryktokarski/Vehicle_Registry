@@ -24,7 +24,7 @@ class Refuel
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="date")
      */
     private $date;
 
@@ -48,9 +48,14 @@ class Refuel
      * @ORM\Column(name="kilometer_end", type="integer", nullable=true)
      */
     private $kilometerEnd;
+    
+    
+    
+    public function getAvgFuel(){
+        return round(($this->liters/($this->kilometerEnd-$this->kilometerStart))*100,2);
+    }
 
-
-    /**
+        /**
      * Get id
      *
      * @return integer 
@@ -63,7 +68,7 @@ class Refuel
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param \Date $date
      * @return Refuel
      */
     public function setDate($date)
@@ -76,7 +81,7 @@ class Refuel
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \Date 
      */
     public function getDate()
     {

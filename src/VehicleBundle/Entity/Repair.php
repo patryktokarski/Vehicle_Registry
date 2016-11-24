@@ -29,9 +29,9 @@ class Repair
     private $description;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="date")
      */
     private $date;
 
@@ -79,7 +79,7 @@ class Repair
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param \Date $date
      * @return Repair
      */
     public function setDate($date)
@@ -92,7 +92,7 @@ class Repair
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \Date 
      */
     public function getDate()
     {

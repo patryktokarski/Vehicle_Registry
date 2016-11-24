@@ -64,12 +64,19 @@ class Brand
     }
     
     /**
+     * @ORM\OneToMany(targetEntity="Car", mappedBy="brand")
+     */
+    
+    private $cars;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Model", mappedBy="brand")
      */
     private $models;
 
     public function __construct() {
         $this->models = new ArrayCollection();
+        $this->cars = new ArrayCollection();
     }
 
 
@@ -104,5 +111,45 @@ class Brand
     public function getModels()
     {
         return $this->models;
+    }
+
+    public function __toString() {
+        return $this->name;
+    }
+    
+    
+
+
+    /**
+     * Add cars
+     *
+     * @param \VehicleBundle\Entity\Car $cars
+     * @return Brand
+     */
+    public function addCar(\VehicleBundle\Entity\Car $cars)
+    {
+        $this->cars[] = $cars;
+
+        return $this;
+    }
+
+    /**
+     * Remove cars
+     *
+     * @param \VehicleBundle\Entity\Car $cars
+     */
+    public function removeCar(\VehicleBundle\Entity\Car $cars)
+    {
+        $this->cars->removeElement($cars);
+    }
+
+    /**
+     * Get cars
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCars()
+    {
+        return $this->cars;
     }
 }

@@ -29,9 +29,9 @@ class Repair
     private $description;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="date")
      */
     private $date;
 
@@ -79,7 +79,7 @@ class Repair
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param \Date $date
      * @return Repair
      */
     public function setDate($date)
@@ -92,7 +92,7 @@ class Repair
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \Date 
      */
     public function getDate()
     {
@@ -134,4 +134,50 @@ class Repair
     */
     private $car;
 
+
+    /**
+     * Set category
+     *
+     * @param \VehicleBundle\Entity\Category $category
+     * @return Repair
+     */
+    public function setCategory(\VehicleBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \VehicleBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set car
+     *
+     * @param \VehicleBundle\Entity\Car $car
+     * @return Repair
+     */
+    public function setCar(\VehicleBundle\Entity\Car $car = null)
+    {
+        $this->car = $car;
+
+        return $this;
+    }
+
+    /**
+     * Get car
+     *
+     * @return \VehicleBundle\Entity\Car 
+     */
+    public function getCar()
+    {
+        return $this->car;
+    }
 }

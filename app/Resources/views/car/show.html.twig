@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}New car added to database{% endblock title %}
+{% block body %}
+    <table class="table">
+        <tbody>
+            {#<tr>
+                <th>Id</th>
+                <td>{{ car.id }}</td>
+            </tr>#}
+            <tr>
+                <th>Brand</th>
+                <td>{{ car.brand }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ car.model }}</td>
+            </tr>
+            <tr>
+                <th>Fuel</th>
+                <td>{{ car.fuel }}</td>
+            </tr>
+            <tr>
+                <th>Capacity</th>
+                <td>{{ car.capacity }}</td>
+            </tr>
+            <tr>
+                <th>Power</th>
+                <td>{{ car.power }}</td>
+            </tr>
+            <tr>
+                <th>First Registration</th>
+                <td>{% if car.firstRegistration %}{{ car.firstRegistration|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('car_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('car_edit', { 'id': car.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

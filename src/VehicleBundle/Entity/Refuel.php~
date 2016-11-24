@@ -24,7 +24,7 @@ class Refuel
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="date")
      */
     private $date;
 
@@ -63,7 +63,7 @@ class Refuel
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param \Date $date
      * @return Refuel
      */
     public function setDate($date)
@@ -76,7 +76,7 @@ class Refuel
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \Date 
      */
     public function getDate()
     {
@@ -158,4 +158,27 @@ class Refuel
      */
     private $car;
 
+
+    /**
+     * Set car
+     *
+     * @param \VehicleBundle\Entity\Car $car
+     * @return Refuel
+     */
+    public function setCar(\VehicleBundle\Entity\Car $car = null)
+    {
+        $this->car = $car;
+
+        return $this;
+    }
+
+    /**
+     * Get car
+     *
+     * @return \VehicleBundle\Entity\Car 
+     */
+    public function getCar()
+    {
+        return $this->car;
+    }
 }

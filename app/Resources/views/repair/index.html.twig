@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Repairs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for repair in repairs %}
+            <tr>
+                <td><a href="{{ path('repair_show', { 'id': repair.id }) }}">{{ repair.id }}</a></td>
+                <td>{{ repair.description }}</td>
+                <td>{% if repair.date %}{{ repair.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ repair.amount }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('repair_show', { 'id': repair.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('repair_edit', { 'id': repair.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('repair_new') }}">Create a new repair</a>
+        </li>
+    </ul>
+{% endblock %}

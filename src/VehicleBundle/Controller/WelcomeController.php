@@ -4,14 +4,16 @@ namespace VehicleBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use VehicleBundle\Entity\User;
 
-class DefaultController extends Controller
+class WelcomeController extends Controller
 {
     /**
      * @Route("/")
      */
     public function indexAction()
     {
-        return $this->render('VehicleBundle:Default:index.html.twig');
+        $user = $this->getUser();
+        return $this->render('VehicleBundle:Welcome:index.html.twig', ['user' => $user]);
     }
 }

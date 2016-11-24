@@ -22,19 +22,19 @@ class Car
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="brand", type="string", length=255)
-     */
-    private $brand;
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="brand", type="string", length=255)
+//     */
+//    private $brand;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="model", type="string", length=255)
-     */
-    private $model;
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="model", type="string", length=255)
+//     */
+//    private $model;
 
     /**
      * @var float
@@ -51,11 +51,18 @@ class Car
     private $power;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="first_registration", type="datetime")
+     * @ORM\Column(name="first_registration", type="date")
      */
     private $firstRegistration;
+    
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="fuel", type="string", length=255)
+     */
+    private $fuel;
 
 
     /**
@@ -163,7 +170,7 @@ class Car
     /**
      * Set firstRegistration
      *
-     * @param \DateTime $firstRegistration
+     * @param \Date $firstRegistration
      * @return Car
      */
     public function setFirstRegistration($firstRegistration)
@@ -176,7 +183,7 @@ class Car
     /**
      * Get firstRegistration
      *
-     * @return \DateTime 
+     * @return \Date 
      */
     public function getFirstRegistration()
     {
@@ -203,5 +210,133 @@ class Car
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="cars")
+     * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+     */
+    private $brand;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Model", inversedBy="cars")
+     * @ORM\JoinColumn(name="model_id", referencedColumnName="id")
+     */
+    private $model;
 
+
+    /**
+     * Add repairs
+     *
+     * @param \VehicleBundle\Entity\Repair $repairs
+     * @return Car
+     */
+    public function addRepair(\VehicleBundle\Entity\Repair $repairs)
+    {
+        $this->repairs[] = $repairs;
+
+        return $this;
+    }
+
+    /**
+     * Remove repairs
+     *
+     * @param \VehicleBundle\Entity\Repair $repairs
+     */
+    public function removeRepair(\VehicleBundle\Entity\Repair $repairs)
+    {
+        $this->repairs->removeElement($repairs);
+    }
+
+    /**
+     * Get repairs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRepairs()
+    {
+        return $this->repairs;
+    }
+
+    /**
+     * Add refuels
+     *
+     * @param \VehicleBundle\Entity\Refuel $refuels
+     * @return Car
+     */
+    public function addRefuel(\VehicleBundle\Entity\Refuel $refuels)
+    {
+        $this->refuels[] = $refuels;
+
+        return $this;
+    }
+
+    /**
+     * Remove refuels
+     *
+     * @param \VehicleBundle\Entity\Refuel $refuels
+     */
+    public function removeRefuel(\VehicleBundle\Entity\Refuel $refuels)
+    {
+        $this->refuels->removeElement($refuels);
+    }
+
+    /**
+     * Get refuels
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRefuels()
+    {
+        return $this->refuels;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \VehicleBundle\Entity\User $user
+     * @return Car
+     */
+    public function setUser(\VehicleBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \VehicleBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set fuel
+     *
+     * @param string $fuel
+     * @return Car
+     */
+    public function setFuel($fuel)
+    {
+        $this->fuel = $fuel;
+
+        return $this;
+    }
+
+    /**
+     * Get fuel
+     *
+     * @return string 
+     */
+    public function getFuel()
+    {
+        return $this->fuel;
+    }
+    
+    public function __toString() {
+        return $this->firstRegistration;
+    }
 }

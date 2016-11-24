@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block username %}{{ user.email }}{% endblock username %}
+{% block title %}Home{% endblock title %}
+{% block desc %}Search a car and check the exploatation infomations{% endblock desc %}
+{% block body %}
+
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+
+
+{% endblock body %}
+
+{% block js %}<script src="{{ asset('sbadmin/js/app.js') }}"></script>{%endblock js %}

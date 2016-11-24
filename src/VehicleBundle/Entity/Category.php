@@ -105,4 +105,8 @@ class Category
     {
         return $this->repairs;
     }
+    
+    public function __toString() {
+        return $this->name;
+    }
 }

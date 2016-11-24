@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Refuels list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Liters</th>
+                <th>Kilometerstart</th>
+                <th>Kilometerend</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for refuel in refuels %}
+            <tr>
+                <td><a href="{{ path('refuel_show', { 'id': refuel.id }) }}">{{ refuel.id }}</a></td>
+                <td>{% if refuel.date %}{{ refuel.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ refuel.liters }}</td>
+                <td>{{ refuel.kilometerStart }}</td>
+                <td>{{ refuel.kilometerEnd }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('refuel_show', { 'id': refuel.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('refuel_edit', { 'id': refuel.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('refuel_new') }}">Create a new refuel</a>
+        </li>
+    </ul>
+{% endblock %}

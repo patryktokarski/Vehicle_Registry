@@ -72,4 +72,41 @@ class Category
         $this->repairs = new ArrayCollection();
     }
 
+
+    /**
+     * Add repairs
+     *
+     * @param \VehicleBundle\Entity\Repair $repairs
+     * @return Category
+     */
+    public function addRepair(\VehicleBundle\Entity\Repair $repairs)
+    {
+        $this->repairs[] = $repairs;
+
+        return $this;
+    }
+
+    /**
+     * Remove repairs
+     *
+     * @param \VehicleBundle\Entity\Repair $repairs
+     */
+    public function removeRepair(\VehicleBundle\Entity\Repair $repairs)
+    {
+        $this->repairs->removeElement($repairs);
+    }
+
+    /**
+     * Get repairs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRepairs()
+    {
+        return $this->repairs;
+    }
+    
+    public function __toString() {
+        return $this->name;
+    }
 }

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block username %}{{ user.email }}{% endblock username %}
+{% block body %}
+    <h1>Cars list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+{#                <th>Id</th>#}
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Capacity</th>
+                <th>Power</th>
+                <th>First Registration</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+            <tr>
+{#                <td><a href="{{ path('car_show', { 'id': car.id }) }}">{{ car.id }}</a></td>#}
+                <td>{{ car.brand }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.capacity }}</td>
+                <td>{{ car.power }}</td>
+                <td>{% if car.firstRegistration %}{{ car.firstRegistration|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('car_show', { 'id': car.id }) }}">car info</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('show_vehicle_repo', { 'id': car.id }) }}">show car raport</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('car_edit', { 'id': car.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('car_new') }}">Create a new car</a>
+        </li>
+    </ul>
+{% endblock %}

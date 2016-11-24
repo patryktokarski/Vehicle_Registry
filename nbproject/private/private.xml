@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/patryk/Workspace/Vehicle_Registry/app/config/routing.yml</file>
-            <file>file:/home/patryk/Workspace/Vehicle_Registry/src/VehicleBundle/Entity/User.php</file>
-            <file>file:/home/patryk/Workspace/Vehicle_Registry/app/config/config.yml</file>
-            <file>file:/home/patryk/Workspace/Vehicle_Registry/app/AppKernel.php</file>
-            <file>file:/home/patryk/Workspace/Vehicle_Registry/src/VehicleBundle/Entity/Brand.php</file>
-            <file>file:/home/patryk/Workspace/Vehicle_Registry/src/VehicleBundle/Entity/Model.php</file>
+            <file>file:/home/patryk/Workspace/Vehicle_Registry/src/VehicleBundle/Resources/views/Main/showVehicles.html.twig</file>
+            <file>file:/home/patryk/Workspace/Vehicle_Registry/src/VehicleBundle/Controller/RefuelController.php</file>
+            <file>file:/home/patryk/Workspace/Vehicle_Registry/src/VehicleBundle/Controller/CarController.php</file>
             <file>file:/home/patryk/Workspace/Vehicle_Registry/app/Resources/views/base.html.twig</file>
+            <file>file:/home/patryk/Workspace/Vehicle_Registry/src/VehicleBundle/Controller/MainController.php</file>
         </group>
     </open-files>
 </project-private>

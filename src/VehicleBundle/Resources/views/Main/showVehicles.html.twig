@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}These vehicles match the search criteria{% endblock %}
+{% block desc %}
+    <ul>
+        {% for br in brand %}<li>Brand: {{ br.name }}</li>{% endfor %}
+        {% if model != null %}{% for ml in model %}<li>Model: {{ ml.name }}</li>{% endfor %}{% endif %}
+    </ul>
+{% endblock desc %}
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>User</th>
+                <th>Averange Fuel Consumption [l/100km]</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+            <tr>
+                <td><a href="{{ path('show_vehicle_repo', { 'id': car.id }) }}">{{ car.brand.name }}</a></td>
+                <td>{{ car.model.name }}</td>
+                <td>{{ car.user.username }}</td>
+                <td>12.6</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        
+{% endblock body %}       
+

@@ -22,19 +22,19 @@ class Car
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="brand", type="string", length=255)
-     */
-    private $brand;
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="brand", type="string", length=255)
+//     */
+//    private $brand;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="model", type="string", length=255)
-     */
-    private $model;
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="model", type="string", length=255)
+//     */
+//    private $model;
 
     /**
      * @var float
@@ -51,11 +51,18 @@ class Car
     private $power;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="first_registration", type="datetime")
+     * @ORM\Column(name="first_registration", type="date")
      */
     private $firstRegistration;
+    
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="fuel", type="string", length=255)
+     */
+    private $fuel;
 
 
     /**
@@ -163,7 +170,7 @@ class Car
     /**
      * Set firstRegistration
      *
-     * @param \DateTime $firstRegistration
+     * @param \Date $firstRegistration
      * @return Car
      */
     public function setFirstRegistration($firstRegistration)
@@ -176,7 +183,7 @@ class Car
     /**
      * Get firstRegistration
      *
-     * @return \DateTime 
+     * @return \Date 
      */
     public function getFirstRegistration()
     {
@@ -203,6 +210,18 @@ class Car
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="cars")
+     * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+     */
+    private $brand;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Model", inversedBy="cars")
+     * @ORM\JoinColumn(name="model_id", referencedColumnName="id")
+     */
+    private $model;
 
 
     /**
@@ -292,5 +311,32 @@ class Car
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set fuel
+     *
+     * @param string $fuel
+     * @return Car
+     */
+    public function setFuel($fuel)
+    {
+        $this->fuel = $fuel;
+
+        return $this;
+    }
+
+    /**
+     * Get fuel
+     *
+     * @return string 
+     */
+    public function getFuel()
+    {
+        return $this->fuel;
+    }
+    
+    public function __toString() {
+        return $this->firstRegistration;
     }
 }
