@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use JsonSerializable;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use VehicleBundle\Entity\Model;
+use VehicleBundle\Entity\Refuel;
 
 class MainController extends Controller
 {
@@ -92,10 +93,46 @@ class MainController extends Controller
         
         if (!isset($modelId) || empty($model)) {
             $cars = $em->getRepository("VehicleBundle:Car")->findByBrand($brand);
-            return ["cars" => $cars, 'brand' => $brand, 'model' => $model];
+            $carsTotalAvg = [];
+            foreach ($cars as $car) {
+                $refuels = $em->getRepository("VehicleBundle:Refuel")->findByCar($car);
+                $totalFuel = 0;
+                $i = 0;
+                foreach ($refuels as $refuel) {
+                    $avgFuel = $refuel->getAvgFuel();
+                    $totalFuel += $avgFuel;
+                    $i++;
+                }
+                if ($i != 0) {
+                    $totalAvg = $totalFuel/$i;
+                    $carsTotalAvg[] = $totalAvg;
+                } else {
+                    $carsTotalAvg[] = 0;
+                }
+                
+            }
+            return ["cars" => $cars, 'brand' => $brand, 'model' => $model, 'carsTotalAvg' => $carsTotalAvg];
         } else {
             $cars = $em->getRepository("VehicleBundle:Car")->findByModel($model);
-            return ["cars" => $cars, 'brand' => $brand, 'model' => $model];
+            $carsTotalAvg = [];
+            foreach ($cars as $car) {
+                $refuels = $em->getRepository("VehicleBundle:Refuel")->findByCar($car);
+                $totalFuel = 0;
+                $i = 0;
+                foreach ($refuels as $refuel) {
+                    $avgFuel = $refuel->getAvgFuel();
+                    $totalFuel += $avgFuel;
+                    $i++;
+                }
+                if ($i != 0) {
+                    $totalAvg = $totalFuel/$i;
+                    $carsTotalAvg[] = $totalAvg;
+                } else {
+                    $carsTotalAvg[] = 0;
+                }
+                
+            }
+            return ["cars" => $cars, 'brand' => $brand, 'model' => $model, 'carsTotalAvg' => $carsTotalAvg];
         }
         
         return [];

@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}These vehicles match the search criteria{% endblock %}
+
+{% block title %}{{ cars|length}} results found. These vehicles match the search criteria{% endblock %}
 {% block desc %}
+    {% set totalResultCons = 0 %}
+    {% for one in carsTotalAvg %}
+        {% set totalResultCons = totalResultCons + one %}
+    {% endfor %}
     <ul>
         {% for br in brand %}<li>Brand: {{ br.name }}</li>{% endfor %}
         {% if model != null %}{% for ml in model %}<li>Model: {{ ml.name }}</li>{% endfor %}{% endif %}
+        <li>Averange fuel consumption for found results:{% if (carsTotalAvg|length) != 0 %}{{ (totalResultCons/(carsTotalAvg|length))|number_format(2, '.')}}{% else %}0{% endif %}</li>
     </ul>
 {% endblock desc %}
 {% block body %}
@@ -24,7 +30,9 @@
                 <td><a href="{{ path('show_vehicle_repo', { 'id': car.id }) }}">{{ car.brand.name }}</a></td>
                 <td>{{ car.model.name }}</td>
                 <td>{{ car.user.username }}</td>
-                <td>12.6</td>
+                <td>
+                {{carsTotalAvg[loop.index-1]}}
+                </td>
             </tr>
         {% endfor %}
         </tbody>
