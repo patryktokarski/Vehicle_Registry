@@ -19,8 +19,9 @@
         {% for br in brand %}<li>Brand: {{ br.name }}</li>{% endfor %}
         {% if model != null %}{% for ml in model %}<li>Model: {{ ml.name }}</li>{% endfor %}{% endif %}
     </ul>
-
+        {% if cars is not empty %}
         Additional information:
+        {% endif %}
     <ul>
         {% if cars is not empty %}<li>Average fuel consumption for found results:
             {% if (carsTotalAvg|length) != 0 %}{{ (totalResultCons/(carsTotalAvg|length))|number_format(1, '.')}}
@@ -29,8 +30,12 @@
             {% endif %}</li>
         {% endif %}
 
-        {% if category is not empty %}
-            <li>The most common problems: {{ category[0].name }}</li>
+        {% if topCategories is not empty %}
+        <li>The most common problems:
+            {% for topCategory in topCategories %}
+            {{ topCategory[0].name }},
+        {% endfor %}
+        </li>
         {% endif %}
     </ul>
 {% endblock desc %}

@@ -120,11 +120,6 @@ class MainController extends Controller
                     $categoryId = $category->getId();
                     $allRepairCategoryIds[] = $categoryId;
                 }
-                $n = array_count_values($allRepairCategoryIds);
-                $mostDuplicatedCategory = array_search(max($n), $n);
-                $category = $em->getRepository("VehicleBundle:Category")->findById($mostDuplicatedCategory);
-
-
                 $totalFuel = 0;
                 $i = 0;
                 foreach ($refuels as $refuel) {
@@ -140,13 +135,24 @@ class MainController extends Controller
                 }
 
             }
-            return ["cars" => $cars, 'brand' => $brand, 'model' => $model, 'carsTotalAvg' => $carsTotalAvg, 'category' => $category];
+
+        if ($allRepairCategoryIds != []) {
+            $counts = array_count_values($allRepairCategoryIds);
+            $mostRepeatedCategories = array_slice($counts, 0, 2, true);
+            $tops = array_keys($mostRepeatedCategories);
+            $topCategories = [];
+            foreach ($tops as $top) {
+                $category = $em->getRepository("VehicleBundle:Category")->findById($top);
+                $topCategories[] = $category;
+            }
+        } else {
+            $topCategories = [];
         }
+        return ["cars" => $cars, 'brand' => $brand, 'model' => $model, 'carsTotalAvg' => $carsTotalAvg, 'topCategories' => $topCategories];
+        }
+
 //
 //        return [];
 //
 //    }
-
-
-
 }
