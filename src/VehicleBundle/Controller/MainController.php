@@ -111,10 +111,20 @@ class MainController extends Controller
 
             $cars = $em->getRepository("VehicleBundle:Car")->findByModel($model);
             $carsTotalAvg = [];
+            $allRepairCategoryIds = [];
             foreach ($cars as $car) {
                 $refuels = $em->getRepository("VehicleBundle:Refuel")->findByCar($car);
                 $repairs = $em->getRepository("VehicleBundle:Repair")->findByCar($car);
-                
+                foreach ($repairs as $repair) {
+                    $category = $repair->getCategory();
+                    $categoryId = $category->getId();
+                    $allRepairCategoryIds[] = $categoryId;
+                }
+                $n = array_count_values($allRepairCategoryIds);
+                $mostDuplicatedCategory = array_search(max($n), $n);
+                $category = $em->getRepository("VehicleBundle:Category")->findById($mostDuplicatedCategory);
+
+
                 $totalFuel = 0;
                 $i = 0;
                 foreach ($refuels as $refuel) {
@@ -130,7 +140,7 @@ class MainController extends Controller
                 }
 
             }
-            return ["cars" => $cars, 'brand' => $brand, 'model' => $model, 'carsTotalAvg' => $carsTotalAvg];
+            return ["cars" => $cars, 'brand' => $brand, 'model' => $model, 'carsTotalAvg' => $carsTotalAvg, 'category' => $category];
         }
 //
 //        return [];
