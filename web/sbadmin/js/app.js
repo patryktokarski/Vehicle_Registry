@@ -22,8 +22,6 @@ $(document).ready(function() {
             var selectModel = $(document).find('form.form-horizontal').find('select#form_Model');
             var optionModel = selectModel.find('option');
             optionModel.remove();
-            var model = $("<option value>Any</option>");
-            selectModel.append(model);
             for ( var i = 0; i < models.length; i++) {
                 var model = $("<option value ='" + models[i].id + "'>" + models[i].name + "</option>");
                 selectModel.append(model);
@@ -55,8 +53,6 @@ $(document).ready(function() {
             var selectModel = $(document).find('form.form-horizontal').find('select#form_Model');
             var optionModel = selectModel.find('option');
             optionModel.remove();
-            var model = $("<option value>Any</option>");
-            selectModel.append(model);
             for ( var i = 0; i < models.length; i++) {
                 var model = $("<option value ='" + models[i].id + "'>" + models[i].name + "</option>");
                 selectModel.append(model);

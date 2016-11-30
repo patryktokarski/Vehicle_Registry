@@ -22,20 +22,6 @@ class Car
      */
     private $id;
 
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="brand", type="string", length=255)
-//     */
-//    private $brand;
-
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="model", type="string", length=255)
-//     */
-//    private $model;
-
     /**
      * @var float
      *
@@ -56,14 +42,13 @@ class Car
      * @ORM\Column(name="first_registration", type="date")
      */
     private $firstRegistration;
-    
-       /**
+
+    /**
      * @var string
      *
      * @ORM\Column(name="fuel", type="string", length=255)
      */
     private $fuel;
-
 
     /**
      * Get id
@@ -189,6 +174,7 @@ class Car
     {
         return $this->firstRegistration;
     }
+
     
     /**
     * @ORM\OneToMany(targetEntity="Repair", mappedBy="car")
@@ -338,5 +324,28 @@ class Car
     
     public function __toString() {
         return $this->firstRegistration;
+    }
+
+    /**
+     * Set avgFuelConsumption
+     *
+     * @param integer $avgFuelConsumption
+     * @return Car
+     */
+    public function setAvgFuelConsumption($avgFuelConsumption)
+    {
+        $this->avgFuelConsumption = $avgFuelConsumption;
+
+        return $this;
+    }
+
+    /**
+     * Get avgFuelConsumption
+     *
+     * @return integer 
+     */
+    public function getAvgFuelConsumption()
+    {
+        return $this->avgFuelConsumption;
     }
 }

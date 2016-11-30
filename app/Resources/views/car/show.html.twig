@@ -5,10 +5,6 @@
 {% block body %}
     <table class="table">
         <tbody>
-            {#<tr>
-                <th>Id</th>
-                <td>{{ car.id }}</td>
-            </tr>#}
             <tr>
                 <th>Brand</th>
                 <td>{{ car.brand }}</td>
@@ -38,7 +34,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('car_index') }}">Back to the list</a>
+            <a href="{{ path('show_vehicle_repo', { 'id': car.id }) }}">Go to car report</a>
         </li>
         <li>
             <a href="{{ path('car_edit', { 'id': car.id }) }}">Edit</a>

@@ -6,6 +6,7 @@ use VehicleBundle\Entity\Repair;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * Repair controller.
@@ -58,6 +59,7 @@ class RepairController extends Controller
         return $this->render('repair/new.html.twig', array(
             'repair' => $repair,
             'form' => $form->createView(),
+            'id' => $id,
         ));
     }
 
@@ -136,5 +138,17 @@ class RepairController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    
+    /**
+     * @Route("/showRepairInfo/{id}", name = "show_repair_info")
+     * @Template()
+     */
+    
+    public function showRepairInfoAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $repair = $em->getRepository("VehicleBundle:Repair")->findById($id);
+        
+        return ['repair' => $repair];
     }
 }

@@ -19,8 +19,6 @@ class CarType extends AbstractType
                 ->add('Model', 'entity', array(
                     'class' => 'VehicleBundle:Model',
                     'choice_label' => 'name',))
-//                ->add('brand')
-//                ->add('model')
                 ->add('fuel')
                 ->add('capacity')
                 ->add('power')

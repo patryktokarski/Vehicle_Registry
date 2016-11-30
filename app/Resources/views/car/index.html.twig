@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
+
+{% block title %}Cars list{% endblock title %}
 {% block username %}{{ user.email }}{% endblock username %}
+{% block desc %}All your cars{% endblock desc %}
 {% block body %}
-    <h1>Cars list</h1>
 
     <table class="table">
         <thead>
             <tr>
-{#                <th>Id</th>#}
                 <th>Brand</th>
                 <th>Model</th>
                 <th>Capacity</th>
@@ -19,7 +20,6 @@
         <tbody>
         {% for car in cars %}
             <tr>
-{#                <td><a href="{{ path('car_show', { 'id': car.id }) }}">{{ car.id }}</a></td>#}
                 <td>{{ car.brand }}</td>
                 <td>{{ car.model }}</td>
                 <td>{{ car.capacity }}</td>
@@ -43,9 +43,4 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('car_new') }}">Create a new car</a>
-        </li>
-    </ul>
 {% endblock %}

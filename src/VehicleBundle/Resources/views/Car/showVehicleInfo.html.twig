@@ -2,19 +2,8 @@
 
 {% block username %}{{ user.email }}{% endblock username %}
 {% block title %}Info{% endblock title %}
-
-{% block desc %}
-    {% for flashMessage in app.session.flashbag.get('notice') %}
-    {{ flashMessage }}
-    {% endfor %}
-{% endblock desc %}
-
-{% block body %}   
-    
-{#{% set avgFuelAll = 0 %}#}
-{#{% for refuel in refuels %}#}
-     {#{% set avgFuelAll = avgFuelAll + refuel.getAvgFuel %}#}
-{#{% endfor %}#}
+{% block desc %}{% endblock desc %}
+{% block body %}
            
     <table class="table">
         <thead>
@@ -24,8 +13,7 @@
                 <th>Capacity [dm3]</th>
                 <th>Power [KM]</th>
                 <th>First Registration</th>
-                <th>Total Averange Fuel Consumption [l/100km]</th>
-                <th>Action</th>
+                <th>Averange Fuel Consumption [l/100km]</th>
             </tr>
         </thead>
         <tbody>
@@ -36,15 +24,7 @@
                 <td>{{ c.capacity }}</td>
                 <td>{{ c.power }}</td>
                 <td>{{ c.firstRegistration|date('Y-m-d') }}</td>
-                <td>{{ total | number_format ("1", ".") }}</td>
-                <td>
-                    <li>
-                        <a href="{{ path('refuel_new', { 'id': c.id }) }}">Add refuel</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('repair_new', { 'id': c.id }) }}">Add repair</a>
-                    </li> 
-                </td>
+                <td>{{ total | number_format (1, ".") }}</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -59,7 +39,6 @@
                 <th>Kilometer start</th>
                 <th>Kilometer end</th>
                 <th>Averange fuel consumption</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -70,11 +49,6 @@
                 <td>{{ refuel.kilometerStart }}</td>
                 <td>{{ refuel.kilometerEnd }}</td>
                 <td>{{ refuel.avgFuelConsumption| number_format(1, ".")}}</td>
-                <td>
-                    <ul>
-                        <li><a href="{{ path('refuel_delete', { 'id': refuel.id }) }}">Delete</a></li>
-                    </ul>
-                </td>
             </tr>
         {% endfor %}
         </tbody>
@@ -87,7 +61,6 @@
                 <th>Date</th>
                 <th>Category</th>
                 <th>Amount</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -97,7 +70,7 @@
                 <td>{{ repair.category.name }}</td>
                 <td>{{ repair.amount }}</td>
                 <td>
-                    <li><a href="{{ path('repair_show', { 'id': repair.id }) }}">Show description</a></li>
+                    <li><a href="{{ path('show_repair_info', { 'id': repair.id }) }}">Show description</a></li>
                 </td>
             </tr>
         {% endfor %}

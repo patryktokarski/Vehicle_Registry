@@ -49,8 +49,15 @@ class Refuel
      */
     private $kilometerEnd;
 
-
     /**
+     * @var float
+     *
+     * @ORM\Column(name="avg_fuel_consumption", type="float")
+     */
+    private $avgFuelConsumption;
+
+
+        /**
      * Get id
      *
      * @return integer 
@@ -180,5 +187,28 @@ class Refuel
     public function getCar()
     {
         return $this->car;
+    }
+
+    /**
+     * Set avgFuelConsumption
+     *
+     * @param integer $avgFuelConsumption
+     * @return Refuel
+     */
+    public function setAvgFuelConsumption($avgFuelConsumption)
+    {
+        $this->avgFuelConsumption = $avgFuelConsumption;
+
+        return $this;
+    }
+
+    /**
+     * Get avgFuelConsumption
+     *
+     * @return integer 
+     */
+    public function getAvgFuelConsumption()
+    {
+        return $this->avgFuelConsumption;
     }
 }

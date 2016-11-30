@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Welcome</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('sbadmin/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -145,10 +145,6 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ path("car_index") }}"><i class="fa fa-fw fa-user"></i> Show Car</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
                             <a href="{{ path("fos_user_security_logout") }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
@@ -161,15 +157,22 @@
                     <li class="active">
                         <a href="{{ path('main') }}"><i class="fa fa-fw fa-edit"></i> Home</a>  
                     </li>
+                    {% if app.user is null %}
                     <li>
                         <a href="{{ path("fos_user_security_login") }}"><i class="fa fa-fw fa-bar-chart-o"></i> Login</a>
                     </li>
                     <li>
+                        <a href="{{ path("fos_user_registration_register") }}"><i class="fa fa-fw fa-dashboard"></i> Register</a>
+                    </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_USER') %}
+                    <li>
                         <a href="{{ path('car_new') }}"><i class="fa fa-fw fa-table"></i> Add Car</a>
                     </li>
                     <li>
-                        <a href="{{ path("fos_user_registration_register") }}"><i class="fa fa-fw fa-dashboard"></i> Register</a>
+                        <a href="{{ path("car_index") }}"><i class="fa fa-fw fa-user"></i> Show Cars</a>
                     </li>
+                    {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                     <li>
                         <a href="{{ path("brand_new") }}"><i class="fa fa-fw fa-desktop"></i> Add Brand</a>
@@ -198,7 +201,7 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li class="active">
-                            <i class="fa fa-dashboard"></i> {% block desc %}{% endblock desc %}
+                            <i class="fa"></i> {% block desc %}{% endblock desc %}
                         </li>
                     </ol>
                 </div>

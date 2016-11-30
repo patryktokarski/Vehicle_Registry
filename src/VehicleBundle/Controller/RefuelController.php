@@ -40,8 +40,19 @@ class RefuelController extends Controller
      */
     public function newAction(Request $request, $id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $car = $em->getRepository("VehicleBundle:Car")->findById($id);
+        $refuels = $em->getRepository("VehicleBundle:Refuel")->findByCar($car);
+        if ($refuels == []) {
+            $lastEndKm = 0;
+        } else {
+            $lastRefuel = $refuels[count($refuels)-1];
+            $lastEndKm = $lastRefuel->getKilometerEnd();
+        }
+
         $refuel = new Refuel();
         $form = $this->createForm('VehicleBundle\Form\RefuelType', $refuel);
+        $form->get('kilometerStart')->setData($lastEndKm);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -49,15 +60,25 @@ class RefuelController extends Controller
             
             $car = $em->getRepository("VehicleBundle:Car")->findById($id);
             $refuel->setCar($car[0]);
+            $start = $refuel->getKilometerStart();
+            $end = $refuel->getKilometerEnd();
+            $liters = $refuel->getLiters();
+            $avg = ($liters/($end - $start))*100;
+            $refuel->setAvgFuelConsumption($avg);
+            $car = $refuel->getCar();
+            $id = $car->getId();
+
             $em->persist($refuel);
             $em->flush($refuel);
 
-            return $this->redirectToRoute('refuel_show', array('id' => $refuel->getId()));
+            $this->get('session')->getFlashBag()->add('notice', 'Refuel added to registry');
+            return $this->redirectToRoute('show_vehicle_repo', ['avg' => $avg, 'id' => $id]);
         }
 
         return $this->render('refuel/new.html.twig', array(
             'refuel' => $refuel,
             'form' => $form->createView(),
+            'id' => $id,
         ));
     }
 
@@ -118,8 +139,10 @@ class RefuelController extends Controller
             $em->remove($refuel);
             $em->flush($refuel);
         }
+        $car = $refuel->getCar();
+        $id = $car->getId();
 
-        return $this->redirectToRoute('refuel_index');
+        return $this->redirectToRoute('show_vehicle_repo', ['id' => $id]);
     }
 
     /**

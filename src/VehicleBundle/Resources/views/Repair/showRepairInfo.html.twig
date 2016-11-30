@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Repair{% endblock %}
+{% block body %}
+
+    <table>
+        <tbody>
+{% for repair in repair %}
+            <tr>
+                <th>Description</th>
+                <td>{{ repair.description }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if repair.date %}{{ repair.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>{{ repair.amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

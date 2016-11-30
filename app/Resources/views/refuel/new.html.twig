@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Refuel creation{% endblock title %}
 {% block body %}
-    <h1>Refuel creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('refuel_index') }}">Back to the list</a>
+            <a href="{{ path('show_vehicle_repo', {'id': id}) }}">Back</a>
         </li>
     </ul>
 {% endblock %}

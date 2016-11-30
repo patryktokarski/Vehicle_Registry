@@ -149,6 +149,7 @@ class CarController extends Controller
      * @Method("GET")
      * @Template()
      * @param type $id
+     * @return array
      */
     
     
@@ -159,7 +160,50 @@ class CarController extends Controller
         $car = $em->getRepository("VehicleBundle:Car")->findById($id);
         $refuels = $em->getRepository("VehicleBundle:Refuel")->findByCar($car);
         $repairs = $em->getRepository("VehicleBundle:Repair")->findByCar($car);
+
+        $totalAvg = 0;
+        $i = 0;
+        foreach ($refuels as $refuel) {
+            $singleConsumption = $refuel->getAvgFuelConsumption();
+            $totalAvg += $singleConsumption;
+            $i++;
+        }
+        if ($i != 0) {
+            $total = $totalAvg/$i;
+        } else {
+            $total = 0;
+        }
         
-        return ['user' => $user, 'car' => $car, 'refuels' => $refuels, 'repairs' => $repairs];
+        return ['user' => $user, 'car' => $car, 'refuels' => $refuels, 'repairs' => $repairs, 'total' => $total];
+    }
+    
+    
+    /**
+     * @Route("/showVehicleInfo/{id}", name = "show_vehicle_info")
+     * @Template()
+     * @Method("GET")
+     */
+    
+    public function showVehicleInfoAction($id) {
+        $user = $this->getUser();
+        
+        $em = $this->getDoctrine()->getManager();
+        $car = $em->getRepository("VehicleBundle:Car")->findById($id);
+        $refuels = $em->getRepository("VehicleBundle:Refuel")->findByCar($car);
+        $repairs = $em->getRepository("VehicleBundle:Repair")->findByCar($car);
+
+        $totalAvg = 0;
+        $i = 0;
+        foreach ($refuels as $refuel) {
+            $singleConsumption = $refuel->getAvgFuelConsumption();
+            $totalAvg += $singleConsumption;
+            $i++;
+        }
+        if ($i != 0) {
+            $total = $totalAvg/$i;
+        } else {
+            $total = 0;
+        }
+        return ['user' => $user, 'car' => $car, 'refuels' => $refuels, 'repairs' => $repairs, 'total' => $total];
     }
 }

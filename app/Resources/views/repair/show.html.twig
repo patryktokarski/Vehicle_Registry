@@ -26,7 +26,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('repair_index') }}">Back to the list</a>
+            <a href="{{ path('show_vehicle_repo', { 'id': repair.car.id }) }}">Back</a>
         </li>
         <li>
             <a href="{{ path('repair_edit', { 'id': repair.id }) }}">Edit</a>
