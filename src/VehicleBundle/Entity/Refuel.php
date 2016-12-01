@@ -3,6 +3,7 @@
 namespace VehicleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Refuel
@@ -32,6 +33,10 @@ class Refuel
      * @var float
      *
      * @ORM\Column(name="liters", type="float")
+     * @Assert\GreaterThan(
+     *     0,
+     *     message = "This value must be greater than 0"
+     * )
      */
     private $liters;
 
@@ -48,6 +53,14 @@ class Refuel
      * @ORM\Column(name="kilometer_end", type="integer", nullable=true)
      */
     private $kilometerEnd;
+
+    /**
+     * @Assert\True(message = "Kilometer end must be greater than kilometer start")
+     */
+
+    public function isEndBiggerThanStart() {
+        return($this->getKilometerEnd() > $this->getKilometerStart());
+    }
 
     /**
      * @var float
