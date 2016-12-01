@@ -4,6 +4,7 @@ namespace VehicleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Brand
@@ -26,6 +27,13 @@ class Brand
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\NotBlank(
+     *     message = "Name cannot be empty"
+     * )
+     * @Assert\Regex(
+     *     "/^[a-zA-Z0-9 \t]+$/",
+     *     message = "Characters or numbers only"
+     * )
      */
     private $name;
 

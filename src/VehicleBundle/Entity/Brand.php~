@@ -4,6 +4,7 @@ namespace VehicleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Brand
@@ -26,6 +27,9 @@ class Brand
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\NotBlank(
+     *     message = "Name cannot be empty"
+     * )
      */
     private $name;
 
@@ -119,4 +123,37 @@ class Brand
     
     
 
+
+    /**
+     * Add cars
+     *
+     * @param \VehicleBundle\Entity\Car $cars
+     * @return Brand
+     */
+    public function addCar(\VehicleBundle\Entity\Car $cars)
+    {
+        $this->cars[] = $cars;
+
+        return $this;
+    }
+
+    /**
+     * Remove cars
+     *
+     * @param \VehicleBundle\Entity\Car $cars
+     */
+    public function removeCar(\VehicleBundle\Entity\Car $cars)
+    {
+        $this->cars->removeElement($cars);
+    }
+
+    /**
+     * Get cars
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCars()
+    {
+        return $this->cars;
+    }
 }
