@@ -5,8 +5,11 @@ namespace VehicleBundle\Controller;
 use VehicleBundle\Entity\Refuel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
-use VehicleBundle\Entity\Car;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bridge\Doctrine\Tests\Validator\Constraints as Assert;
+use VehicleBundle\Validator\Constraints\StartGreaterThanDefault;
+
 
 /**
  * Refuel controller.
@@ -43,6 +46,7 @@ class RefuelController extends Controller
         $em = $this->getDoctrine()->getManager();
         $car = $em->getRepository("VehicleBundle:Car")->findById($id);
         $refuels = $em->getRepository("VehicleBundle:Refuel")->findByCar($car);
+        new StartGreaterThanDefault($car);
         if ($refuels == []) {
             $lastEndKm = 0;
         } else {
@@ -53,6 +57,14 @@ class RefuelController extends Controller
         $refuel = new Refuel();
         $form = $this->createForm('VehicleBundle\Form\RefuelType', $refuel);
         $form->get('kilometerStart')->setData($lastEndKm);
+        $form->get('kilometerStart', 'integer', array(
+            'constraints' => array(
+                new StartGreaterThanDefault(array(
+                    'car' => $car
+                ))
+            )
+        ));
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

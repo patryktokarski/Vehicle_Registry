@@ -5,6 +5,7 @@ namespace VehicleBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use VehicleBundle\Validator\Constraints\StartGreaterThanDefault;
 
 class RefuelType extends AbstractType
 {
@@ -13,7 +14,11 @@ class RefuelType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('date')->add('liters')->add('kilometerStart')->add('kilometerEnd')       ;
+        $builder->add('date')
+                ->add('liters', 'integer', ['required' => false])
+                ->add('kilometerStart', 'integer', [
+                      'required' => false])
+                ->add('kilometerEnd', 'integer', ['required' => false]) ;
     }
     
     /**

@@ -4,6 +4,7 @@ namespace VehicleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use VehicleBundle\Validator\Constraints as AcmeAssert;
 
 /**
  * Refuel
@@ -33,6 +34,9 @@ class Refuel
      * @var float
      *
      * @ORM\Column(name="liters", type="float")
+     * @Assert\NotBlank(
+     *     message = "This value cannot be empty"
+     * )
      * @Assert\GreaterThan(
      *     0,
      *     message = "This value must be greater than 0"
@@ -44,6 +48,10 @@ class Refuel
      * @var int
      *
      * @ORM\Column(name="kilometer_start", type="integer")
+     * @Assert\NotBlank(
+     *     message = "This value cannot be empty"
+     * )
+     * @AcmeAssert\StartGreaterThanDefault()
      */
     private $kilometerStart;
 
@@ -51,6 +59,9 @@ class Refuel
      * @var int
      *
      * @ORM\Column(name="kilometer_end", type="integer", nullable=true)
+     * @Assert\NotBlank(
+     *     message = "This value cannot be empty"
+     * )
      */
     private $kilometerEnd;
 
