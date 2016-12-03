@@ -5,13 +5,15 @@ namespace VehicleBundle\Controller;
 use VehicleBundle\Entity\Brand;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
-use VehicleBundle\Entity\Car;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Brand controller.
  *
  * @Route("brand")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class BrandController extends Controller
 {

@@ -5,12 +5,15 @@ namespace VehicleBundle\Controller;
 use VehicleBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Category controller.
  *
  * @Route("category")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class CategoryController extends Controller
 {
