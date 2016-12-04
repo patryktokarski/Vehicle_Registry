@@ -13,7 +13,7 @@ class RepairType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('category')->add('description')->add('date')->add('amount')      ;
+        $builder->add('category')->add('description')->add('date')->add('amount', 'integer', ['required' => false])      ;
     }
     
     /**

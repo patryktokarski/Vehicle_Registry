@@ -3,6 +3,7 @@
 namespace VehicleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Repair
@@ -39,6 +40,8 @@ class Repair
      * @var float
      *
      * @ORM\Column(name="amount", type="float", nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan(0)
      */
     private $amount;
 
@@ -151,7 +154,8 @@ class Repair
     /**
      * Get category
      *
-     * @return \VehicleBundle\Entity\Category 
+     * @return \VehicleBundle\Entity\Category
+     * @Assert\NotBlank()
      */
     public function getCategory()
     {

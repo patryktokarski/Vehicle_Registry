@@ -56,8 +56,6 @@ class RefuelController extends Controller
             $lastEndKm = $lastRefuel->getKilometerEnd();
         }
 
-
-        $newConst = new StartGreaterThanDefault();
         $refuel = new Refuel();
         $form = $this->createFormBuilder($refuel)
             ->add('date')
