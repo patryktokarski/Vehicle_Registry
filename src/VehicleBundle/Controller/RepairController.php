@@ -53,7 +53,7 @@ class RepairController extends Controller
             $em->persist($repair);
             $em->flush($repair);
 
-            return $this->redirectToRoute('repair_show', array('id' => $repair->getId()));
+            return $this->redirectToRoute('show_vehicle_repo', array('id' => $car[0]->getId()));
         }
 
         return $this->render('repair/new.html.twig', array(

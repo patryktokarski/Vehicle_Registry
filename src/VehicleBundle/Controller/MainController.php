@@ -83,7 +83,7 @@ class MainController extends Controller
         $modelId = $request->get('form')['Model'];
         $brand = $em->getRepository("VehicleBundle:Brand")->findById($brandId);
         $model = $em->getRepository("VehicleBundle:Model")->findById($modelId);
-        $cars = $em->getRepository("VehicleBundle:Car")->findByModel($model);
+        $cars = $em->getRepository("VehicleBundle:Car")->findBy(array('brand' => $brand, 'model' => $model));
 
         $carsTotalAvg = [];
         $allRepairCategoryIds = [];
