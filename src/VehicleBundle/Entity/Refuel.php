@@ -70,7 +70,10 @@ class Refuel
      */
 
     public function isEndBiggerThanStart() {
-        return($this->getKilometerEnd() > $this->getKilometerStart());
+        if ($this->getKilometerEnd() != null) {
+            return($this->getKilometerEnd() > $this->getKilometerStart());
+        }
+        return null;
     }
 
     /**

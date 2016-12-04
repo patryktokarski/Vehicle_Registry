@@ -87,14 +87,17 @@ class MainController extends Controller
 
         $carsTotalAvg = [];
         $allRepairCategoryIds = [];
+
         foreach ($cars as $car) {
             $refuels = $em->getRepository("VehicleBundle:Refuel")->findByCar($car);
             $repairs = $em->getRepository("VehicleBundle:Repair")->findByCar($car);
+
             foreach ($repairs as $repair) {
                 $category = $repair->getCategory();
                 $categoryId = $category->getId();
                 $allRepairCategoryIds[] = $categoryId;
             }
+            $allRepairs = count($allRepairCategoryIds);
             $totalFuel = 0;
             $i = 0;
             foreach ($refuels as $refuel) {
@@ -109,6 +112,8 @@ class MainController extends Controller
                 $carsTotalAvg[] = 0;
             }
         }
+
+        $percentage = [];
         if ($allRepairCategoryIds != []) {
             $counts = array_count_values($allRepairCategoryIds);
             $mostRepeatedCategories = array_slice($counts, 0, 2, true);
@@ -117,10 +122,20 @@ class MainController extends Controller
             foreach ($tops as $top) {
                 $category = $em->getRepository("VehicleBundle:Category")->findById($top);
                 $topCategories[] = $category;
+                $percentage[] = ($counts[$top]/$allRepairs)*100;
             }
+
         } else {
             $topCategories = [];
+
         }
-        return ["cars" => $cars, 'brand' => $brand, 'model' => $model, 'carsTotalAvg' => $carsTotalAvg, 'topCategories' => $topCategories];
+        return ["cars" => $cars,
+            'brand' => $brand,
+            'model' => $model,
+            'carsTotalAvg' => $carsTotalAvg,
+            'topCategories' => $topCategories,
+            'percentage' => $percentage,
+            'allRepairs' => $allRepairs
+        ];
     }
 }

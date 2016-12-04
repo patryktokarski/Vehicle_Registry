@@ -2,6 +2,9 @@
 
 namespace VehicleBundle\Controller;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Test\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 use VehicleBundle\Entity\Refuel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -46,7 +49,6 @@ class RefuelController extends Controller
         $em = $this->getDoctrine()->getManager();
         $car = $em->getRepository("VehicleBundle:Car")->findById($id);
         $refuels = $em->getRepository("VehicleBundle:Refuel")->findByCar($car);
-        new StartGreaterThanDefault($car);
         if ($refuels == []) {
             $lastEndKm = 0;
         } else {
@@ -54,16 +56,19 @@ class RefuelController extends Controller
             $lastEndKm = $lastRefuel->getKilometerEnd();
         }
 
+
+        $newConst = new StartGreaterThanDefault();
         $refuel = new Refuel();
-        $form = $this->createForm('VehicleBundle\Form\RefuelType', $refuel);
-        $form->get('kilometerStart')->setData($lastEndKm);
-        $form->get('kilometerStart', 'integer', array(
-            'constraints' => array(
-                new StartGreaterThanDefault(array(
-                    'car' => $car
-                ))
-            )
-        ));
+        $form = $this->createFormBuilder($refuel)
+            ->add('date')
+            ->add('liters', 'integer', ['required' => false])
+            ->add('kilometerStart', 'integer', array(
+                  'required' => false,
+                  'data' => $lastEndKm,
+                  //'constraints' => $newConst->setCar($car)))
+                  'constraints' => new GreaterThan($lastEndKm)))
+            ->add('kilometerEnd', 'integer', ['required' => false])
+            ->getForm();
 
         $form->handleRequest($request);
 

@@ -32,10 +32,13 @@
 
         {% if topCategories is not empty %}
         <li>The most common problems:
+            <ul>
             {% for topCategory in topCategories %}
-            {{ topCategory[0].name }},
+            <li>{{ topCategory[0].name }}  {{ percentage[loop.index - 1]|number_format(1, ".") }}%*</li>
         {% endfor %}
+                </ul>
         </li>
+            <small><small>* per all reported repairs: {{ allRepairs }}</small></small>.
         {% endif %}
     </ul>
 {% endblock desc %}

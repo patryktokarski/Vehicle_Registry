@@ -14,10 +14,14 @@ class StartGreaterThanDefault extends Constraint {
     public $message = 'The Kilometer start value cannot be lower than previous kilometer end (%value%).';
     public $car;
 
-    public function __construct($options) {
+    public function __construct($options = null) {
 
-        $this->car = $options;
+        $this->car = $options['car'];
 
+    }
+
+    public function setCar($car) {
+        $this->car = $car;
     }
 
     public function getCar() {
