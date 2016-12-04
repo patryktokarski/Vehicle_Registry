@@ -120,8 +120,10 @@ class RepairController extends Controller
             $em->remove($repair);
             $em->flush($repair);
         }
+        $car = $repair->getCar();
+        $id = $car->getId();
 
-        return $this->redirectToRoute('repair_index');
+        return $this->redirectToRoute('show_vehicle_repo', ['id' => $id]);
     }
 
     /**
