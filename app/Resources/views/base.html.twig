@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Welcome</title>
+    <title>{{ 'Welcome'|trans }}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('sbadmin/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -102,9 +102,9 @@
                             <a href="#">Read All New Messages</a>
                         </li>
                     </ul>
-                </li>
+                </li>#}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa"></i> {{ 'Language'|trans }}<b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
                         <li>
                             <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
@@ -129,23 +129,23 @@
                             <a href="#">View All</a>
                         </li>
                     </ul>
-                </li>#}
+                </li>
                 {% if is_granted('ROLE_USER') %}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {% block username %}{% endblock username %} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ app.user.username }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{{ path("fos_user_profile_show") }}"><i class="fa fa-fw fa-user"></i> Show Profile</a>
+                            <a href="{{ path("fos_user_profile_show") }}"><i class="fa fa-fw fa-user"></i> {{ 'Show Profile'|trans }}</a>
                         </li>
                         <li>
-                            <a href="{{ path("fos_user_profile_edit") }}"><i class="fa fa-fw fa-user"></i> Edit Profile</a>
+                            <a href="{{ path("fos_user_profile_edit") }}"><i class="fa fa-fw fa-user"></i> {{ 'Edit Profile'|trans }}</a>
                         </li>
                         <li>
-                            <a href="{{ path("fos_user_change_password") }}"><i class="fa fa-fw fa-user"></i> Change Password</a>
+                            <a href="{{ path("fos_user_change_password") }}"><i class="fa fa-fw fa-user"></i> {{ 'Change Password'|trans }}</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ path("fos_user_security_logout") }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="{{ path("fos_user_security_logout") }}"><i class="fa fa-fw fa-power-off"></i> {{ 'Logout'|trans }}</a>
                         </li>
                     </ul>
                 </li>
@@ -155,33 +155,33 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="{{ path('main') }}"><i class="fa fa-fw fa-edit"></i> Home</a>  
+                        <a href="{{ path('main') }}"><i class="fa fa-fw fa-edit"></i>Home</a>
                     </li>
                     {% if app.user is null %}
                     <li>
-                        <a href="{{ path("fos_user_security_login") }}"><i class="fa fa-fw fa-bar-chart-o"></i> Login</a>
+                        <a href="{{ path("fos_user_security_login") }}"><i class="fa fa-fw fa-bar-chart-o"></i> {{ 'Login'|trans }}</a>
                     </li>
                     <li>
-                        <a href="{{ path("fos_user_registration_register") }}"><i class="fa fa-fw fa-dashboard"></i> Register</a>
+                        <a href="{{ path("fos_user_registration_register") }}"><i class="fa fa-fw fa-dashboard"></i> {{ 'Register'|trans }}</a>
                     </li>
                     {% endif %}
                     {% if is_granted('ROLE_USER') %}
                     <li>
-                        <a href="{{ path('car_new') }}"><i class="fa fa-fw fa-table"></i> Add Car</a>
+                        <a href="{{ path('car_new') }}"><i class="fa fa-fw fa-table"></i> {{ 'Add Car'|trans }}</a>
                     </li>
                     <li>
-                        <a href="{{ path("car_index") }}"><i class="fa fa-fw fa-user"></i> Show Cars</a>
+                        <a href="{{ path("car_index") }}"><i class="fa fa-fw fa-user"></i> {{ 'Show Cars'|trans }}</a>
                     </li>
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                     <li>
-                        <a href="{{ path("brand_new") }}"><i class="fa fa-fw fa-desktop"></i> Add Brand</a>
+                        <a href="{{ path("brand_new") }}"><i class="fa fa-fw fa-desktop"></i> {{ 'Add Brand'|trans }}</a>
                     </li>
                     <li>
-                        <a href="{{ path("model_new") }}"><i class="fa fa-fw fa-wrench"></i> Add model</a>
+                        <a href="{{ path("model_new") }}"><i class="fa fa-fw fa-wrench"></i> {{ 'Add model'|trans }}</a>
                     </li>
                     <li>
-                        <a href="{{ path("category_new") }}"><i class="fa fa-fw fa-wrench"></i> Add repair category</a>
+                        <a href="{{ path("category_new") }}"><i class="fa fa-fw fa-wrench"></i> {{ 'Add repair category'|trans }}</a>
                     </li>
                     {% endif %}
                 </ul>

@@ -1,20 +1,19 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Cars list{% endblock title %}
-{% block username %}{{ user.email }}{% endblock username %}
-{% block desc %}All your cars{% endblock desc %}
+{% block title %}{{ 'Cars list'|trans }}{% endblock title %}
+{% block desc %}{{ 'All your cars'|trans }}{% endblock desc %}
 {% block body %}
 
     <table class="table">
         <thead>
             <tr>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Capacity</th>
-                <th>Power</th>
-                <th>First Registration</th>
-                <th>Actions</th>
+                <th>{{ 'Brand'|trans }}</th>
+                <th>{{ 'Model'|trans }}</th>
+                <th>{{ 'Capacity'|trans }}</th>
+                <th>{{ 'Power'|trans }}</th>
+                <th>{{ 'First Registration'|trans }}</th>
+                <th>{{ 'Actions'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -28,13 +27,13 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('car_show', { 'id': car.id }) }}">car info</a>
+                            <a href="{{ path('car_show', { 'id': car.id }) }}">{{ 'Car info'|trans }}</a>
                         </li>
                         <li>
-                            <a href="{{ path('show_vehicle_repo', { 'id': car.id }) }}">show car raport</a>
+                            <a href="{{ path('show_vehicle_repo', { 'id': car.id }) }}">{{ 'Show car raport'|trans }}</a>
                         </li>
                         <li>
-                            <a href="{{ path('car_edit', { 'id': car.id }) }}">edit</a>
+                            <a href="{{ path('car_edit', { 'id': car.id }) }}">{{ 'Edit'|trans }}</a>
                         </li>
                     </ul>
                 </td>

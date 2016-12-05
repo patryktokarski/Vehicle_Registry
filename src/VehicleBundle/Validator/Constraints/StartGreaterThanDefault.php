@@ -16,7 +16,7 @@ class StartGreaterThanDefault extends Constraint {
 
     public function __construct($options = null) {
 
-        $this->car = $options['car'];
+        $this->car = $options;
 
     }
 

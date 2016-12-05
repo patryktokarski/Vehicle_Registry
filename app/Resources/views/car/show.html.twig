@@ -1,32 +1,32 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}New car added to database{% endblock title %}
+{% block title %}{% endblock title %}
 {% block body %}
     <table class="table">
         <tbody>
             <tr>
-                <th>Brand</th>
+                <th>{{ 'Brand'|trans }}</th>
                 <td>{{ car.brand }}</td>
             </tr>
             <tr>
-                <th>Model</th>
+                <th>{{ 'Model'|trans }}</th>
                 <td>{{ car.model }}</td>
             </tr>
             <tr>
-                <th>Fuel</th>
+                <th>{{ 'Fuel'|trans }}</th>
                 <td>{{ car.fuel }}</td>
             </tr>
             <tr>
-                <th>Capacity</th>
+                <th>{{ 'Capacity'|trans }}</th>
                 <td>{{ car.capacity }}</td>
             </tr>
             <tr>
-                <th>Power</th>
+                <th>{{ 'Power'|trans }}</th>
                 <td>{{ car.power }}</td>
             </tr>
             <tr>
-                <th>First Registration</th>
+                <th>{{ 'First Registration'|trans }}</th>
                 <td>{% if car.firstRegistration %}{{ car.firstRegistration|date('Y-m-d') }}{% endif %}</td>
             </tr>
         </tbody>
@@ -34,14 +34,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('show_vehicle_repo', { 'id': car.id }) }}">Go to car report</a>
+            <a href="{{ path('car_index') }}">{{ 'Go to car list'|trans }}</a>
         </li>
         <li>
-            <a href="{{ path('car_edit', { 'id': car.id }) }}">Edit</a>
+            <a href="{{ path('car_edit', { 'id': car.id }) }}">{{ 'Edit'|trans }}</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="{{ 'Delete'|trans }}">
             {{ form_end(delete_form) }}
         </li>
     </ul>

@@ -22,7 +22,10 @@ class CarType extends AbstractType
                 ->add('fuel')
                 ->add('capacity')
                 ->add('power')
-                ->add('firstRegistration')        ;
+                ->add('firstRegistration', 'date', array (
+                    'label' => "First Registration",
+                    'translation_domain' => 'messages')
+                );
     }
     
     /**

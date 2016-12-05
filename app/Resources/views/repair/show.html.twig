@@ -1,24 +1,20 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ 'Repair'|trans }}{% endblock title %}
 {% block body %}
-    <h1>Repair</h1>
 
-    <table>
+    <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ repair.id }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
+                <th>{{ 'Description'|trans }}</th>
                 <td>{{ repair.description }}</td>
             </tr>
             <tr>
-                <th>Date</th>
+                <th>{{ 'Date'|trans }}</th>
                 <td>{% if repair.date %}{{ repair.date|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Amount</th>
+                <th>{{ 'Amount'|trans }}</th>
                 <td>{{ repair.amount }}</td>
             </tr>
         </tbody>
@@ -26,14 +22,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('show_vehicle_repo', { 'id': repair.car.id }) }}">Back</a>
+            <a href="{{ path('show_vehicle_repo', { 'id': repair.car.id }) }}">{{ 'Back'|trans }}</a>
         </li>
         <li>
-            <a href="{{ path('repair_edit', { 'id': repair.id }) }}">Edit</a>
+            <a href="{{ path('repair_edit', { 'id': repair.id }) }}">{{ 'Edit'|trans }}</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="{{ 'Delete'|trans }}">
             {{ form_end(delete_form) }}
         </li>
     </ul>

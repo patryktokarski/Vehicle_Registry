@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Refuel creation{% endblock title %}
+{% block title %}{{ 'Refuel creation'|trans }}{% endblock title %}
 {% block body %}
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="{{ 'Create'|trans }}" />
     {{ form_end(form) }}
 
     <ul>
         <li>
-            <a href="{{ path('show_vehicle_repo', {'id': id}) }}">Back</a>
+            <a href="{{ path('show_vehicle_repo', {'id': id}) }}">{{ 'Back'|trans }}</a>
         </li>
     </ul>
 {% endblock %}

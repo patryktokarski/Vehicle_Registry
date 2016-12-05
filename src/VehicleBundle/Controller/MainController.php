@@ -20,21 +20,23 @@ class MainController extends Controller
     public function mainAction() {
         
         $user = $this->getUser();
-
         
         $form = $this->createFormBuilder()
                 ->setAction($this->generateUrl('show_vehicles'))
                 ->setMethod('POST')
                 ->add('Brand', 'entity', array(
                     'class' => 'VehicleBundle:Brand',
-                    'choice_label' => 'name',))
+                    'choice_label' => 'name',
+                    'translation_domain' => 'messages'))
                 ->add('Model', 'entity', array(
                     'class' => 'VehicleBundle:Model',
-                    'choice_label' => 'name',))
-                ->add('save', 'submit', array('label' => 'Search'))
+                    'choice_label' => 'name',
+                    'translation_domain' => 'messages'))
+                ->add('save', 'submit', array(
+                    'label' => 'Search',
+                    'translation_domain' => 'messages'
+                      ))
                 ->getForm();
-
-
 
         return $this->render('VehicleBundle:Main:main.html.twig', [
             'user' => $user,
@@ -51,14 +53,11 @@ class MainController extends Controller
     
     
     public function updateFormAction (Request $request) {
-        
-        $user = $this->getUser();
-        
+
         $brandId = $request->request->get("brandId");
         
         $em = $this->getDoctrine()->getManager();
         $brand = $em->getRepository("VehicleBundle:Brand")->findById($brandId);
-        
         $em = $this->getDoctrine()->getManager();
         $models = $em->getRepository("VehicleBundle:Model")->findByBrand($brand);
         echo json_encode($models);
@@ -113,7 +112,7 @@ class MainController extends Controller
             }
         }
 
-        $percentage = [];
+        $number = [];
         if ($allRepairCategoryIds != []) {
             $counts = array_count_values($allRepairCategoryIds);
             $mostRepeatedCategories = array_slice($counts, 0, 2, true);
@@ -122,19 +121,19 @@ class MainController extends Controller
             foreach ($tops as $top) {
                 $category = $em->getRepository("VehicleBundle:Category")->findById($top);
                 $topCategories[] = $category;
-                $percentage[] = ($counts[$top]/$allRepairs)*100;
+                $number[] = $counts[$top];
             }
 
         } else {
             $topCategories = [];
-
+            $allRepairs = 0;
         }
         return ["cars" => $cars,
             'brand' => $brand,
             'model' => $model,
             'carsTotalAvg' => $carsTotalAvg,
             'topCategories' => $topCategories,
-            'percentage' => $percentage,
+            'number' => $number,
             'allRepairs' => $allRepairs
         ];
     }

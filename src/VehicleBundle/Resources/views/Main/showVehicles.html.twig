@@ -2,11 +2,13 @@
 
 {% block title %}
     {% if cars is empty %}
-        No results found
+        {{ 'No results found'|trans }}.
+    {% elseif (cars|length) == 1 %}
+        {{ cars|length}} {{ 'result found'|trans }}.
     {% else %}
-        {{ cars|length}} results found. These vehicles match the search criteria.
+        {{ cars|length}} {{ 'results found'|trans }}.
     {% endif %}
-{% endblock %}
+{% endblock title %}
 
 {% block desc %}
 
@@ -16,14 +18,14 @@
     {% endfor %}
 
     <ul>
-        {% for br in brand %}<li>Brand: {{ br.name }}</li>{% endfor %}
-        {% if model != null %}{% for ml in model %}<li>Model: {{ ml.name }}</li>{% endfor %}{% endif %}
+        {% for br in brand %}<li>{{ 'Brand'|trans }}: {{ br.name }}</li>{% endfor %}
+        {% if model != null %}{% for ml in model %}<li>{{ 'Model'|trans }}: {{ ml.name }}</li>{% endfor %}{% endif %}
     </ul>
         {% if cars is not empty %}
-        Additional information:
+            {{ 'Additional information'|trans }}:
         {% endif %}
     <ul>
-        {% if cars is not empty %}<li>Average fuel consumption for found results:
+        {% if cars is not empty %}<li>{{ 'Average fuel consumption for found results'|trans }}:
             {% if (carsTotalAvg|length) != 0 %}{{ (totalResultCons/(carsTotalAvg|length))|number_format(1, '.')}}
             {% else %}
                 0
@@ -31,28 +33,29 @@
         {% endif %}
 
         {% if topCategories is not empty %}
-        <li>The most common problems:
+        <li>{{ 'The most common problems'|trans }}:
             <ul>
             {% for topCategory in topCategories %}
-            <li>{{ topCategory[0].name }}  {{ percentage[loop.index - 1]|number_format(1, ".") }}%*</li>
+            <li>{{ topCategory[0].name }}  {{ number[loop.index - 1] }} / {{ allRepairs }}*</li>
         {% endfor %}
-                </ul>
+            </ul>
         </li>
-            <small><small>* per all reported repairs: {{ allRepairs }}</small></small>.
+            <small><small>* {{ 'all reported repairs'|trans }} </small></small>.
         {% endif %}
     </ul>
 {% endblock desc %}
+
 {% block body %}
     <table class="table">
         <thead>
             <tr>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Fuel</th>
-                <th>Capacity</th>
-                <th>Power</th>
-                <th>User</th>
-                <th>Average Fuel Consumption [l/100km]</th>
+                <th>{{ 'Brand'|trans }}</th>
+                <th>{{ 'Model'|trans }}</th>
+                <th>{{ 'Fuel'|trans }}</th>
+                <th>{{ 'Capacity'|trans }}</th>
+                <th>{{ 'Power'|trans }}</th>
+                <th>{{ 'User'|trans }}</th>
+                <th>{{ 'Average Fuel Consumption'|trans }} [l/100km]</th>
             </tr>
         </thead>
         <tbody>
@@ -69,6 +72,5 @@
         {% endfor %}
         </tbody>
     </table>
-        
 {% endblock body %}       
 

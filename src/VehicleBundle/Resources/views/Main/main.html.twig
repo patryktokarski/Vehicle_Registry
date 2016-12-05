@@ -2,7 +2,7 @@
 
 {% block username %}{{ user.email }}{% endblock username %}
 {% block title %}Home{% endblock title %}
-{% block desc %}Search a car and check the exploatation infomations{% endblock desc %}
+{% block desc %}{{ 'Search a car and check the exploatation infomations'|trans }}{% endblock desc %}
 {% block body %}
 
 {{ form_start(form) }}

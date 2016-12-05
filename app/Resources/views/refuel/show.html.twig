@@ -1,24 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Refuel{% endblock title %}
+{% block title %}{{ 'Refuel'|trans }}{% endblock title %}
 {% block body %}
 
-    <table>
+    <table class="table">
         <tbody>
             <tr>
-                <th>Date</th>
+                <th>{{ 'Date'|trans }}</th>
                 <td>{% if refuel.date %}{{ refuel.date|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Liters</th>
+                <th>{{ 'Liters'|trans }}</th>
                 <td>{{ refuel.liters }}</td>
             </tr>
             <tr>
-                <th>Kilometer Start</th>
+                <th>{{ 'Kilometer start'|trans }}</th>
                 <td>{{ refuel.kilometerStart }}</td>
             </tr>
             <tr>
-                <th>Kilometer End</th>
+                <th>{{ 'Kilometer end'|trans }}</th>
                 <td>{{ refuel.kilometerEnd }}</td>
             </tr>
         </tbody>
@@ -26,11 +26,11 @@
 
     <ul>
         <li>
-            <a href="{{ path('show_vehicle_repo', { 'id': refuel.car.id }) }}">Back</a>
+            <a href="{{ path('show_vehicle_repo', { 'id': refuel.car.id }) }}">{{ 'Back'|trans }}</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
+            <input type="submit" value="{{ 'Delete'|trans }}">
             {{ form_end(delete_form) }}
         </li>
     </ul>

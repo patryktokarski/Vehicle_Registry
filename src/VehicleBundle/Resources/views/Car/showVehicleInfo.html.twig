@@ -8,12 +8,12 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Capacity [dm3]</th>
-                <th>Power [KM]</th>
-                <th>First Registration</th>
-                <th>Averange Fuel Consumption [l/100km]</th>
+                <th>{{ 'Brand'|trans }}</th>
+                <th>{{ 'Model'|trans }}</th>
+                <th>{{ 'Capacity'|trans }}[dm3]</th>
+                <th>{{ 'Power'|trans }}[KM]</th>
+                <th>{{ 'First Registration'|trans }}</th>
+                <th>{{ 'Average Fuel Consumption'|trans }} [l/100km]</th>
             </tr>
         </thead>
         <tbody>
@@ -31,14 +31,14 @@
     </table>
         
     <table class="table">
-        <h1>Refuel informations</h1>
+        <h1>{{ 'Refuel informations'|trans }}</h1>
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Liters</th>
-                <th>Kilometer start</th>
-                <th>Kilometer end</th>
-                <th>Averange fuel consumption</th>
+                <th>{{ 'Date'|trans }}</th>
+                <th>{{ 'Liters'|trans }}</th>
+                <th>{{ 'Kilometer start'|trans }}</th>
+                <th>{{ 'Kilometer end'|trans }}</th>
+                <th>{{ 'Average Fuel Consumption'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -55,12 +55,12 @@
     </table>
         
     <table class="table">
-        <h1>Repair informations</h1>
+        <h1>{{ 'Repair informations'|trans }}</h1>
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Category</th>
-                <th>Amount</th>
+                <th>{{ 'Date'|trans }}</th>
+                <th>{{ 'Category'|trans }}</th>
+                <th>{{ 'Amount'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -70,7 +70,7 @@
                 <td>{{ repair.category.name }}</td>
                 <td>{{ repair.amount }}</td>
                 <td>
-                    <li><a href="{{ path('show_repair_info', { 'id': repair.id }) }}">Show description</a></li>
+                    <li><a href="{{ path('show_repair_info', { 'id': repair.id }) }}">{{ 'Show description'|trans }}</a></li>
                 </td>
             </tr>
         {% endfor %}
