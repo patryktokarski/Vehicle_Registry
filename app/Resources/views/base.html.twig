@@ -103,33 +103,31 @@
                         </li>
                     </ul>
                 </li>#}
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa"></i> {{ 'Language'|trans }}<b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
+                {#{% for locale in ['en', 'pl','de'] %}#}
+                {#<li>#}
+                    {#<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : locale})) }}">#}
+                        {#{% if locale == 'en' %}#}
+                            {#<img title="English" src="{{ asset('bundles/fkmywebsite/images/UnitedStates.png') }}" alt="English" height="30" width="30"/>#}
+                        {#{% elseif locale == 'pl' %}#}
+                            {#<img title="Polski" src="{{ asset('bundles/fkmywebsite/images/France.png') }}" alt="Polski" height="30" width="30"/>#}
+                        {#{% endif %}#}
+    {#<           /div>#}
+                {#</li>#}
+                {#{% endfor %}#}
+                {#<li class="dropdown">#}
+                    {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa"></i> {{ 'Language'|trans }}<b class="caret"></b></a>#}
+                    {#<ul class="dropdown-menu alert-dropdown">#}
+                        {#<li>#}
+                            {#<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'pl'})) }}">{{ 'Polish'|trans }}</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">{{ 'English'|trans }}</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'de'})) }}">{{ 'German'|trans }}</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</li>#}
                 {% if is_granted('ROLE_USER') %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ app.user.username }} <b class="caret"></b></a>
@@ -184,6 +182,9 @@
                         <a href="{{ path("category_new") }}"><i class="fa fa-fw fa-wrench"></i> {{ 'Add repair category'|trans }}</a>
                     </li>
                     {% endif %}
+                    <li>
+                        <a href="{{ path("settings") }}"><i class="fa fa-fw fa-wrench"></i> {{ 'Settings'|trans }}</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -206,7 +207,6 @@
                     </ol>
                 </div>
             </div>
-                
                 <!-- /.row -->
                 {% block fos_user_content %}{% endblock fos_user_content %}
                 {% block body %}{% endblock body %}

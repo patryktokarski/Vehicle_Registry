@@ -13,3 +13,9 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: validator.constraint_validator }
+
+    vehicle.locale_listener:
+        class: VehicleBundle\EventListener\LocaleListener
+        arguments: ['%kernel.default_locale%']
+        tags:
+            - { name: kernel.event_subscriber }
