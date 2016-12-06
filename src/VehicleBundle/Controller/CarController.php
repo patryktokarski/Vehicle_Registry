@@ -31,7 +31,6 @@ class CarController extends Controller
 
         return $this->render('car/index.html.twig', array(
             'cars' => $cars,
-            'user' => $user,
         ));
     }
 
@@ -42,10 +41,8 @@ class CarController extends Controller
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
-    {       
-        
+    {
         $car = new Car();
-        
         $form = $this->createForm('VehicleBundle\Form\CarType', $car);
         $form->handleRequest($request);
 

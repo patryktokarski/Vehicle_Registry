@@ -242,6 +242,22 @@
                 <source>Language</source>
                 <target>Język</target>
             </trans-unit>
+            <trans-unit id="61">
+                <source>Polish</source>
+                <target>Polski</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>English</source>
+                <target>Angielski</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>German</source>
+                <target>Niemiecki</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>Settings</source>
+                <target>Ustawienia</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

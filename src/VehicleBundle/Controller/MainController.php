@@ -16,10 +16,8 @@ class MainController extends Controller
      * @Route("/", name = "main")
      * @Template()
      */
-    
+
     public function mainAction() {
-        
-        $user = $this->getUser();
         
         $form = $this->createFormBuilder()
                 ->setAction($this->generateUrl('show_vehicles'))
@@ -39,7 +37,6 @@ class MainController extends Controller
                 ->getForm();
 
         return $this->render('VehicleBundle:Main:main.html.twig', [
-            'user' => $user,
             'form' => $form->createView()]);
         
     }  
