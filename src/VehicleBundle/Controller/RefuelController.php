@@ -63,8 +63,8 @@ class RefuelController extends Controller
             ->add('kilometerStart', 'integer', array(
                   'required' => false,
                   'data' => $lastEndKm,
-                  //'constraints' => $newConst->setCar($car)))
-                  'constraints' => new GreaterThan($lastEndKm)))
+                  'constraints' => new StartGreaterThanDefault(['car' => $car])))
+                  //'constraints' => new GreaterThan($lastEndKm)))
             ->add('kilometerEnd', 'integer', ['required' => false])
             ->getForm();
 

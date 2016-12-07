@@ -16,19 +16,19 @@ class StartGreaterThanDefaultValidator extends ConstraintValidator {
     }
     public function  validate($value, Constraint $constraint) {
 
-//        $newValue = $value;
-//        $car = $constraint->getCar();
-//
-//        $refuels = $this->em->getRepository("VehicleBundle:Refuel")->findByCar($car);
-//        $lastRefuel = $refuels[count($refuels) - 1];
-//        $lastEndKm = $lastRefuel->getKilometerEnd();
-//
-//        if ($newValue < $lastEndKm) {
-//
-//            $this->context->buildViolation($constraint->message)
-//                ->setParameter("%value%", $lastEndKm)
-//                ->addViolation();
-//        }
+        $newValue = $value;
+        $car = $constraint->getCar();
+
+        $refuels = $this->em->getRepository("VehicleBundle:Refuel")->findByCar($car);
+        $lastRefuel = $refuels[count($refuels) - 1];
+        $lastEndKm = $lastRefuel->getKilometerEnd();
+
+        if ($newValue < $lastEndKm) {
+
+            $this->context->buildViolation($constraint->message)
+                ->setParameter("%value%", $lastEndKm)
+                ->addViolation();
+        }
     }
 
 
