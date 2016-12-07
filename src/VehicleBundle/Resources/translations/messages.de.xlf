@@ -4,11 +4,11 @@
         <body>
             <trans-unit id="1">
                 <source>Welcome</source>
-                <target>Witaj</target>
+                <target>Herzlich Wilkommen</target>
             </trans-unit>
             <trans-unit id="2">
                 <source>Brand</source>
-                <target>Marka</target>
+                <target>Marke</target>
             </trans-unit>
             <trans-unit id="3">
                 <source>Model</source>
@@ -16,251 +16,251 @@
             </trans-unit>
             <trans-unit id="4">
                 <source>Search</source>
-                <target>Wyszukaj</target>
+                <target>Suche</target>
             </trans-unit>
             <trans-unit id="5">
                 <source>Fuel</source>
-                <target>Paliwo</target>
+                <target>Kraftstoff</target>
             </trans-unit>
             <trans-unit id="6">
                 <source>Capacity</source>
-                <target>Pojemnosc</target>
+                <target>Hubraum</target>
             </trans-unit>
             <trans-unit id="7">
                 <source>Power</source>
-                <target>Moc</target>
+                <target>Leistung</target>
             </trans-unit>
             <trans-unit id="8">
                 <source>User</source>
-                <target>Użytkownik</target>
+                <target>Nutzer</target>
             </trans-unit>
             <trans-unit id="9">
                 <source>Additional information</source>
-                <target>Informacje dodatkowe</target>
+                <target>Zusatzliche Informationen</target>
             </trans-unit>
             <trans-unit id="10">
                 <source>Average fuel consumption for found results</source>
-                <target>Średnie spalanie dla znalezionych pojazdów</target>
+                <target>Durchscnittlicher Kraftstoff verbrauch fuer gefundene Fahrzeuge</target>
             </trans-unit>
             <trans-unit id="11">
                 <source>Average Fuel Consumption</source>
-                <target>Średnie spalanie</target>
+                <target>Durchscnittlicher Kraftstoff verbrauch</target>
             </trans-unit>
             <trans-unit id="12">
                 <source>The most common problems</source>
-                <target>Najczęściej zgłaszane problemy</target>
+                <target>Haufig gemeldete Probleme</target>
             </trans-unit>
             <trans-unit id="13">
                 <source>all reported repairs</source>
-                <target>wszystkie zgłoszone naprawy</target>
+                <target>alle gemeldete Reparaturen</target>
             </trans-unit>
             <trans-unit id="14">
                 <source>Login</source>
-                <target>Zaloguj</target>
+                <target>Anmelden</target>
             </trans-unit>
             <trans-unit id="15">
                 <source>Register</source>
-                <target>Zarejestruj</target>
+                <target>Registrieren</target>
             </trans-unit>
             <trans-unit id="16">
                 <source>Add Car</source>
-                <target>Dodaj samochód</target>
+                <target>Fahrzeug hinzufuegen</target>
             </trans-unit>
             <trans-unit id="17">
                 <source>Show Cars</source>
-                <target>Pokaż samochody</target>
+                <target>Fahrzeuge zeigen</target>
             </trans-unit>
             <trans-unit id="18">
                 <source>Add Brand</source>
-                <target>Dodaj makrę</target>
+                <target>Neue Marke</target>
             </trans-unit>
             <trans-unit id="19">
                 <source>Add repair category</source>
-                <target>Dodaj kategorię naprawy</target>
+                <target>Neue Reparatur Categorie</target>
             </trans-unit>
             <trans-unit id="20">
                 <source>Logout</source>
-                <target>Wyloguj</target>
+                <target>Abmelden</target>
             </trans-unit>
             <trans-unit id="21">
                 <source>Search a car and check the exploatation infomations</source>
-                <target>Wyszukaj pojazd i sprawdź informacje o jego eksploatacji</target>
+                <target>Suche Fahrzeuge und pruefe die Ausbeutung Informationen</target>
             </trans-unit>
             <trans-unit id="22">
                 <source>Add model</source>
-                <target>Dodaj model</target>
+                <target>Neues Model</target>
             </trans-unit>
             <trans-unit id="23">
                 <source>Show Profile</source>
-                <target>Pokaż profil</target>
+                <target>Progil anzeigen</target>
             </trans-unit>
             <trans-unit id="24">
                 <source>Edit Profile</source>
-                <target>Edytuj profil</target>
+                <target>Profil bearbeiten</target>
             </trans-unit>
             <trans-unit id="25">
                 <source>Change Password</source>
-                <target>Zmień hasło</target>
+                <target>Password aendern</target>
             </trans-unit>
             <trans-unit id="26">
                 <source>First Registration</source>
-                <target>Pierwsza rejestracja</target>
+                <target>Erstzulassung</target>
             </trans-unit>
             <trans-unit id="27">
                 <source>Add your car</source>
-                <target>Dodaj samochód</target>
+                <target>Farhzeug hinzufuegen</target>
             </trans-unit>
             <trans-unit id="28">
                 <source>Cars list</source>
-                <target>Lista samochodów</target>
+                <target>Alle Fahrzeugen</target>
             </trans-unit>
             <trans-unit id="29">
                 <source>All your cars</source>
-                <target>Wszytskie Twoje samochody</target>
+                <target>Alle deine Fahrzeugen</target>
             </trans-unit>
             <trans-unit id="30">
                 <source>Edit</source>
-                <target>Edycja</target>
+                <target>Bearbeiten</target>
             </trans-unit>
             <trans-unit id="31">
                 <source>Show car raport</source>
-                <target>Pokaż raport pojazdu</target>
+                <target>Fahrzeug Bericht anzeigen</target>
             </trans-unit>
             <trans-unit id="32">
                 <source>Car info</source>
-                <target>Informacje o samochodzie</target>
+                <target>Informationen ueber den Fahrzeug</target>
             </trans-unit>
             <trans-unit id="33">
                 <source>Total Average Fuel Consumption</source>
-                <target>Całkowite średnie spalanie</target>
+                <target>Gesamter durchschnittlicher Verbrauch</target>
             </trans-unit>
             <trans-unit id="34">
                 <source>Date</source>
-                <target>Data</target>
+                <target>Datum</target>
             </trans-unit>
             <trans-unit id="35">
                 <source>Actions</source>
-                <target>Akcje</target>
+                <target>Aktionen</target>
             </trans-unit>
             <trans-unit id="36">
                 <source>Liters</source>
-                <target>Ilość litrów</target>
+                <target>Liter</target>
             </trans-unit>
             <trans-unit id="37">
                 <source>Kilometer start</source>
-                <target>Kilometry początek</target>
+                <target>Kilometer von</target>
             </trans-unit>
             <trans-unit id="38">
                 <source>Kilometer end</source>
-                <target>Kilometry koniec</target>
+                <target>Kilometer bis</target>
             </trans-unit>
             <trans-unit id="39">
                 <source>Category</source>
-                <target>Kategoria</target>
+                <target>Kategorie</target>
             </trans-unit>
             <trans-unit id="40">
                 <source>Amount</source>
-                <target>Kwota</target>
+                <target>Betrag</target>
             </trans-unit>
             <trans-unit id="41">
                 <source>Show description</source>
-                <target>Pokaż opis</target>
+                <target>Beschreibung anzeigen</target>
             </trans-unit>
             <trans-unit id="42">
                 <source>Refuel informations</source>
-                <target>Informacje o tankowaniu</target>
+                <target>Auftankung Informationen</target>
             </trans-unit>
             <trans-unit id="43">
                 <source>Repair informations</source>
-                <target>Informacje o naprawach</target>
+                <target>Reparatur Informationen</target>
             </trans-unit>
             <trans-unit id="44">
                 <source>Delete</source>
-                <target>Usuń</target>
+                <target>Loeschen</target>
             </trans-unit>
             <trans-unit id="45">
                 <source>Add refuel</source>
-                <target>Dodaj tankowanie</target>
+                <target>Neue Auftankung</target>
             </trans-unit>
             <trans-unit id="46">
                 <source>Add repair</source>
-                <target>Dodaj naprawę</target>
+                <target>Neue Reparatur</target>
             </trans-unit>
             <trans-unit id="47">
                 <source>Back</source>
-                <target>Powrót</target>
+                <target>Zurueck</target>
             </trans-unit>
             <trans-unit id="48">
                 <source>Create</source>
-                <target>Stwórz</target>
+                <target>Erstellen</target>
             </trans-unit>
             <trans-unit id="49">
                 <source>No results found</source>
-                <target>Brak wyników</target>
+                <target>Keine Ergebnisse</target>
             </trans-unit>
             <trans-unit id="50">
                 <source>result found</source>
-                <target>znaleziony wynik</target>
+                <target>Ergebniss gefunden</target>
             </trans-unit>
             <trans-unit id="51">
                 <source>results found</source>
-                <target>znalezione wyniki</target>
+                <target>Ergebnisse gefunden</target>
             </trans-unit>
             <trans-unit id="52">
                 <source>Description</source>
-                <target>Opis</target>
+                <target>Beschreibung</target>
             </trans-unit>
             <trans-unit id="53">
                 <source>Repair</source>
-                <target>Naprawa</target>
+                <target>Reparatur</target>
             </trans-unit>
             <trans-unit id="54">
                 <source>Edit your car</source>
-                <target>Edytuj samochód</target>
+                <target>Fahrzeug bearbeiten</target>
             </trans-unit>
             <trans-unit id="55">
                 <source>Refuel creation</source>
-                <target>Utwórz tankowanie</target>
+                <target>Auftankung Erstellen</target>
             </trans-unit>
             <trans-unit id="56">
                 <source>Repair creation</source>
-                <target>Utwórz naprawę</target>
+                <target>Reparatur Erstellen</target>
             </trans-unit>
             <trans-unit id="57">
                 <source>Go to car list</source>
-                <target>Przejdź do listy pojazdów</target>
+                <target>Zum Fahrzeugen Liste</target>
             </trans-unit>
             <trans-unit id="58">
                 <source>Repair edit</source>
-                <target>Edytuj naprawę</target>
+                <target>Reparatur bearbeiten</target>
             </trans-unit>
             <trans-unit id="59">
                 <source>Brand edit</source>
-                <target>Edytuj markę</target>
+                <target>Marke bearbeiten</target>
             </trans-unit>
             <trans-unit id="60">
                 <source>Language</source>
-                <target>Język</target>
+                <target>Sprache</target>
             </trans-unit>
             <trans-unit id="61">
                 <source>Polish</source>
-                <target>Polski</target>
+                <target>Polnisch</target>
             </trans-unit>
             <trans-unit id="62">
                 <source>English</source>
-                <target>Angielski</target>
+                <target>Englisch</target>
             </trans-unit>
             <trans-unit id="63">
                 <source>German</source>
-                <target>Niemiecki</target>
+                <target>Deutsch</target>
             </trans-unit>
             <trans-unit id="64">
                 <source>Settings</source>
-                <target>Ustawienia</target>
+                <target>Einstellungen</target>
             </trans-unit>
             <trans-unit id="65">
                 <source>Save</source>
-                <target>Zapisz</target>
+                <target>Speichern</target>
             </trans-unit>
         </body>
     </file>
