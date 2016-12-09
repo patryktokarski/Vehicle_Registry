@@ -10,7 +10,6 @@ services:
 
     validator.start_greater_than_default:
         class: VehicleBundle\Validator\Constraints\StartGreaterThanDefaultValidator
-        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: validator.constraint_validator }
 

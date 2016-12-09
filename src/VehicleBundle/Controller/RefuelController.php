@@ -2,7 +2,6 @@
 
 namespace VehicleBundle\Controller;
 
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Test\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use VehicleBundle\Entity\Refuel;
@@ -63,7 +62,7 @@ class RefuelController extends Controller
             ->add('kilometerStart', 'integer', array(
                   'required' => false,
                   'data' => $lastEndKm,
-                  'constraints' => new StartGreaterThanDefault(['car' => $car])))
+                  'constraints' => new StartGreaterThanDefault($lastEndKm)))
                   //'constraints' => new GreaterThan($lastEndKm)))
             ->add('kilometerEnd', 'integer', ['required' => false])
             ->getForm();
@@ -87,14 +86,17 @@ class RefuelController extends Controller
             $em->flush($refuel);
 
             $this->get('session')->getFlashBag()->add('notice', 'Refuel added to registry');
-            return $this->redirectToRoute('show_vehicle_repo', ['avg' => $avg, 'id' => $id]);
+            return $this->redirectToRoute('show_vehicle_repo', [
+                'avg' => $avg,
+                'id' => $id
+            ]);
         }
 
-        return $this->render('refuel/new.html.twig', array(
+        return $this->render('refuel/new.html.twig', [
             'refuel' => $refuel,
             'form' => $form->createView(),
             'id' => $id,
-        ));
+        ]);
     }
 
     /**

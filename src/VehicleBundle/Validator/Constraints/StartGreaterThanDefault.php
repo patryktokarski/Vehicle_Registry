@@ -12,20 +12,20 @@ use Symfony\Component\Validator\Constraint;
 class StartGreaterThanDefault extends Constraint {
 
     public $message = 'The Kilometer start value cannot be lower than previous kilometer end (%value%).';
-    public $car;
+    public $lastEndKm;
 
-    public function __construct($options = null) {
+    public function __construct($options) {
 
-        $this->car = $options['car'];
-
+        $this->lastEndKm = $options;
     }
 
-    public function setCar($car) {
-        $this->car = $car;
+    public function getLastEndKm() {
+        return $this->lastEndKm;
     }
 
-    public function getCar() {
-        return $this->car;
+    public function getDefaultOption() {
+
+        return 'lastEndKm';
     }
 
 }
