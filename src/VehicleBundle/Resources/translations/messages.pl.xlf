@@ -262,6 +262,10 @@
                 <source>Save</source>
                 <target>Zapisz</target>
             </trans-unit>
+            <trans-unit id="66">
+                <source>Please confirm deletion</source>
+                <target>Proszę potwierdzić</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
