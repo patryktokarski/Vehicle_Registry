@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block desc %}<a href="{{ path('show_vehicle_repo', { 'id': repair.car.id }) }}" class="badge">{{ 'Back'|trans }}</a>{% endblock desc %}
 {% block title %}{{ 'Repair'|trans }}{% endblock title %}
 {% block body %}
 
-    <table class="table">
+    <table class="table text-center table-bordered text-justify">
         <tbody>
             <tr>
                 <th>{{ 'Description'|trans }}</th>
@@ -20,17 +21,11 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('show_vehicle_repo', { 'id': repair.car.id }) }}">{{ 'Back'|trans }}</a>
-        </li>
-        <li>
-            <a href="{{ path('repair_edit', { 'id': repair.id }) }}">{{ 'Edit'|trans }}</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="{{ 'Delete'|trans }}">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+        <a href="{{ path('repair_edit', { 'id': repair.id }) }}" class="btn bg-primary">{{ 'Edit'|trans }}</a>
+        <hr>
+    {{ form_start(delete_form) }}
+        <input type="submit" value="{{ 'Delete'|trans }}" class="btn btn-danger">
+    {{ form_end(delete_form) }}
+
 {% endblock %}

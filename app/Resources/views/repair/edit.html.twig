@@ -1,21 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block desc %}<a href="{{ path('repair_show', { 'id': repair.id }) }}" class="badge">{{ 'Back'|trans }}</a>{% endblock desc %}
 {% block title  %}{{ 'Repair edit'|trans }}{% endblock %}
 {% block body %}
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="{{ 'Edit'|trans }}" />
+        <input type="submit" value="{{ 'Edit'|trans }}" class="btn btn-primary" />
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('show_vehicle_repo', { 'id': repair.car.id } ) }}">{{ 'Back'|trans }}</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="{{ 'Delete'|trans }}">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

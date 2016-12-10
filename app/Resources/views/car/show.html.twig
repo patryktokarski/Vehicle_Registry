@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}{% endblock title %}
+{% block title %}Please confirm deleting{% endblock title %}
+{% block desc %}<a href="{{ path('car_edit', {'id': car.id }) }}" class="badge">{{ 'Back'|trans }}</a>{%  endblock desc %}
 {% block body %}
-    <table class="table">
+    <table class="table text-center table-bordered text-justify">
         <tbody>
             <tr>
                 <th>{{ 'Brand'|trans }}</th>
@@ -32,17 +33,8 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('car_index') }}">{{ 'Go to car list'|trans }}</a>
-        </li>
-        <li>
-            <a href="{{ path('car_edit', { 'id': car.id }) }}">{{ 'Edit'|trans }}</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="{{ 'Delete'|trans }}">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    {{ form_start(delete_form) }}
+        <input type="submit" value="{{ 'Delete'|trans }}" class="btn btn-danger">
+    {{ form_end(delete_form) }}
+
 {% endblock %}

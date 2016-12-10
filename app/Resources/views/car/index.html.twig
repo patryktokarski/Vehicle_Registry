@@ -5,9 +5,9 @@
 {% block desc %}{{ 'All your cars'|trans }}{% endblock desc %}
 {% block body %}
 
-    <table class="table">
+    <table class="table text-center table-bordered text-justify">
         <thead>
-            <tr>
+            <tr class="popover-title">
                 <th>{{ 'Brand'|trans }}</th>
                 <th>{{ 'Model'|trans }}</th>
                 <th>{{ 'Capacity'|trans }}</th>
@@ -25,17 +25,8 @@
                 <td>{{ car.power }}</td>
                 <td>{% if car.firstRegistration %}{{ car.firstRegistration|date('Y-m-d') }}{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('car_show', { 'id': car.id }) }}">{{ 'Car info'|trans }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('show_vehicle_repo', { 'id': car.id }) }}">{{ 'Show car raport'|trans }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('car_edit', { 'id': car.id }) }}">{{ 'Edit'|trans }}</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('show_vehicle_repo', { 'id': car.id }) }}" class="btn bg-primary">{{ 'Show car raport'|trans }}</a>
+                    <a href="{{ path('car_edit', { 'id': car.id }) }}" class="btn bg-primary">{{ 'Edit'|trans }}</a>
                 </td>
             </tr>
         {% endfor %}

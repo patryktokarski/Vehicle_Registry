@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}{{ 'Add your car'|trans }}{% endblock title %}
 {% block desc %}{% endblock desc %}
 {% block body %}
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="{{ 'Create'|trans }}" />
+        <input type="submit" value="{{ 'Create'|trans }}" class="btn btn-success" />
     {{ form_end(form) }}
 
 {% endblock %}

@@ -8,10 +8,10 @@ services:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 
-    validator.start_greater_than_default:
-        class: VehicleBundle\Validator\Constraints\StartGreaterThanDefaultValidator
-        tags:
-            - { name: validator.constraint_validator }
+#    validator.start_greater_than_default:
+#        class: VehicleBundle\Validator\Constraints\StartGreaterThanDefaultValidator
+#        tags:
+#            - { name: validator.constraint_validator }
 
     vehicle.locale_listener:
         class: VehicleBundle\EventListener\LocaleListener
