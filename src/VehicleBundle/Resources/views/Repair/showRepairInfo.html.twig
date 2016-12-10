@@ -3,7 +3,7 @@
 {% block title %}{{ 'Repair'|trans }}{% endblock %}
 {% block body %}
 
-    <table class="table">
+    <table class="table text-center table-bordered text-justify">
         <tbody>
 {% for repair in repair %}
             <tr>
@@ -21,4 +21,5 @@
             {% endfor %}
         </tbody>
     </table>
+    <a href="{{ path('show_vehicle_info', { 'id': repair[0].car.id }) }}" class="btn bg-primary">{{ 'Back'|trans }}</a>
 {% endblock %}

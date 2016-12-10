@@ -55,7 +55,7 @@ class CarController extends Controller
             $em->persist($car);
             $em->flush($car);
 
-            return $this->redirectToRoute('car_show', array('id' => $car->getId()));
+            return $this->redirectToRoute('car_index', array('id' => $user->getId()));
         }
 
         return $this->render('car/new.html.twig', array(

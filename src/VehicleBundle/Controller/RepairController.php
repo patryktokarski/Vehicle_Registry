@@ -94,7 +94,7 @@ class RepairController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('repair_edit', array('id' => $repair->getId()));
+            return $this->redirectToRoute('repair_show', array('id' => $repair->getId()));
         }
 
         return $this->render('repair/edit.html.twig', array(

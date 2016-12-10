@@ -2,8 +2,7 @@
 
 namespace VehicleBundle\Controller;
 
-use Symfony\Component\Form\Test\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\GreaterThan;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use VehicleBundle\Entity\Refuel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -62,8 +61,8 @@ class RefuelController extends Controller
             ->add('kilometerStart', 'integer', array(
                   'required' => false,
                   'data' => $lastEndKm,
-                  'constraints' => new StartGreaterThanDefault($lastEndKm)))
-                  //'constraints' => new GreaterThan($lastEndKm)))
+                  //'constraints' => new StartGreaterThanDefault($lastEndKm)))
+                  'constraints' => new GreaterThanOrEqual($lastEndKm)))
             ->add('kilometerEnd', 'integer', ['required' => false])
             ->getForm();
 

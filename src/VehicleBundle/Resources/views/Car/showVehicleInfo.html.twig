@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block username %}{{ user.email }}{% endblock username %}
 {% block title %}Info{% endblock title %}
 {% block desc %}{% endblock desc %}
 {% block body %}
-           
-    <table class="table">
+    <style type="text/css">td{vertical-align:middle !important}</style>
+    <table class="table text-center table-bordered text-justify">
         <thead>
-            <tr>
+            <tr class="popover-title">
                 <th>{{ 'Brand'|trans }}</th>
                 <th>{{ 'Model'|trans }}</th>
                 <th>{{ 'Capacity'|trans }}[dm3]</th>
@@ -30,10 +29,10 @@
         </tbody>
     </table>
         
-    <table class="table">
+    <table class="table text-center table-bordered text-justify">
         <h1>{{ 'Refuel informations'|trans }}</h1>
         <thead>
-            <tr>
+            <tr class="popover-title">
                 <th>{{ 'Date'|trans }}</th>
                 <th>{{ 'Liters'|trans }}</th>
                 <th>{{ 'Kilometer start'|trans }}</th>
@@ -54,13 +53,14 @@
         </tbody>
     </table>
         
-    <table class="table">
+    <table class="table text-center table-bordered text-justify">
         <h1>{{ 'Repair informations'|trans }}</h1>
         <thead>
-            <tr>
+            <tr class="popover-title">
                 <th>{{ 'Date'|trans }}</th>
                 <th>{{ 'Category'|trans }}</th>
                 <th>{{ 'Amount'|trans }}</th>
+                <th>{{ 'Action'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -70,7 +70,7 @@
                 <td>{{ repair.category.name }}</td>
                 <td>{{ repair.amount }}</td>
                 <td>
-                    <li><a href="{{ path('show_repair_info', { 'id': repair.id }) }}">{{ 'Show description'|trans }}</a></li>
+                    <a href="{{ path('show_repair_info', { 'id': repair.id }) }}" class="btn bg-primary">{{ 'Show description'|trans }}</a>
                 </td>
             </tr>
         {% endfor %}
