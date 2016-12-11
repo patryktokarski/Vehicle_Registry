@@ -55,6 +55,7 @@ class CarController extends Controller
             $em->persist($car);
             $em->flush($car);
 
+            $this->get('session')->getFlashBag()->add('notice', 'Car added');
             return $this->redirectToRoute('car_index', array('id' => $user->getId()));
         }
 
@@ -95,7 +96,8 @@ class CarController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('car_edit', array('id' => $car->getId()));
+            $this->get('session')->getFlashBag()->add('notice', 'Car edited');
+            return $this->redirectToRoute('car_index');
         }
 
         return $this->render('car/edit.html.twig', array(
@@ -122,6 +124,7 @@ class CarController extends Controller
             $em->flush($car);
         }
 
+        $this->get('session')->getFlashBag()->add('notice', 'Car deleted');
         return $this->redirectToRoute('car_index');
     }
 

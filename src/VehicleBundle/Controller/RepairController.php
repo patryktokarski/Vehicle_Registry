@@ -98,6 +98,7 @@ class RepairController extends Controller
             return $this->redirectToRoute('repair_show', array('id' => $repair->getId()));
         }
 
+        $this->get('session')->getFlashBag()->add('notice', 'Repair edited');
         return $this->render('repair/edit.html.twig', array(
             'repair' => $repair,
             'edit_form' => $editForm->createView(),

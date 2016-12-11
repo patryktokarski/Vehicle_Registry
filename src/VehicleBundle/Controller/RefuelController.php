@@ -129,7 +129,8 @@ class RefuelController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('refuel_edit', array('id' => $refuel->getId()));
+            $this->get('session')->getFlashBag()->add('notice', 'Refuel edited');
+            return $this->redirectToRoute('show_vehicle_repo', array('id' => $refuel->getCar()->getId()));
         }
 
         return $this->render('refuel/edit.html.twig', array(

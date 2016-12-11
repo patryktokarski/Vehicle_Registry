@@ -2,7 +2,11 @@
 
 
 {% block title %}{{ 'Cars list'|trans }}{% endblock title %}
-{% block desc %}{{ 'All your cars'|trans }}{% endblock desc %}
+{% block desc %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        {{ flashMessage }}
+    {% endfor %}
+{% endblock desc %}
 {% block body %}
 
     <table class="table text-center table-bordered text-justify">

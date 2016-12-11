@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block desc %}<a href="{{ path('show_vehicle_repo', { 'id': repair.car.id }) }}" class="badge">{{ 'Back'|trans }}</a>{% endblock desc %}
+{% block desc %}
+    <a href="{{ path('show_vehicle_repo', { 'id': repair.car.id }) }}" class="badge">{{ 'Back'|trans }}</a>
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        {{ flashMessage }}
+    {% endfor %}
+{% endblock desc %}
 {% block title %}{{ 'Repair'|trans }}{% endblock title %}
 {% block body %}
 
