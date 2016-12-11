@@ -30,10 +30,6 @@ class MainController extends Controller
                     'class' => 'VehicleBundle:Model',
                     'choice_label' => 'name',
                     'translation_domain' => 'messages'))
-                ->add('save', 'submit', array(
-                    'label' => 'Search',
-                    'translation_domain' => 'messages'
-                      ))
                 ->getForm();
 
         return $this->render('VehicleBundle:Main:main.html.twig', [
