@@ -9,6 +9,9 @@
         <input type="submit" value="{{ 'Edit'|trans }}" class="btn bg-primary" />
     {{ form_end(edit_form) }}
 <hr>
-    <a href="{{ path('car_delete', {'id': car.id}) }}" class="btn btn-danger">{{ 'Delete'|trans }}</a>
+    {{ form_start(delete_form) }}
+        <input type="submit" id="delete" value="{{ 'Delete'|trans }}" class="btn btn-danger">
+    {{ form_end(delete_form) }}
 
 {% endblock %}
+{% block js %}<script src="{{ asset('sbadmin/js/confirm_delete.js') }}"></script>{%endblock js %}

@@ -21,11 +21,6 @@
         </tbody>
     </table>
 
-
-        <a href="{{ path('repair_edit', { 'id': repair.id }) }}" class="btn bg-primary">{{ 'Edit'|trans }}</a>
-        <hr>
-    {{ form_start(delete_form) }}
-        <input type="submit" value="{{ 'Delete'|trans }}" class="btn btn-danger">
-    {{ form_end(delete_form) }}
+    <a href="{{ path('repair_edit', { 'id': repair.id }) }}" class="btn bg-primary">{{ 'Edit'|trans }}</a>
 
 {% endblock %}

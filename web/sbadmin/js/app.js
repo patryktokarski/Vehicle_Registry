@@ -28,11 +28,11 @@ $(document).ready(function() {
             }
             
         })
-	.fail(function(xhr) {
-            console.log('load error', xhr);
-	})
-	.always(function(xhr) {
-            console.log("ajax is working");
+        .fail(function(xhr) {
+                console.log('load error', xhr);
+        })
+        .always(function(xhr) {
+                console.log("ajax is working");
         });
         
     }
@@ -59,11 +59,11 @@ $(document).ready(function() {
             }
             
         })
-	.fail(function(xhr) {
-            console.log('load error', xhr);
-	})
-	.always(function(xhr) {
-            console.log("ajax is working");
+        .fail(function(xhr) {
+                console.log('load error', xhr);
+        })
+        .always(function(xhr) {
+                console.log("ajax is working");
         });
         
     };
