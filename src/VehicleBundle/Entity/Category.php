@@ -31,7 +31,7 @@ class Category
      *     message = "Name cannot be empty"
      * )
      *@Assert\Regex(
-     *     "/^[a-zA-Z0-9]+$/",
+     *     "/^[a-zA-Z0-9 \t]+$/",
      *     message = "Required characters or numbers"
      * )
      */
