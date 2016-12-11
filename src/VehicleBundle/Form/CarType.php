@@ -24,8 +24,10 @@ class CarType extends AbstractType
                 ->add('power')
                 ->add('firstRegistration', 'date', array (
                     'label' => "First Registration",
-                    'translation_domain' => 'messages')
-                );
+                    'translation_domain' => 'messages',
+                    'years' => range(date('Y') - 36, date('Y')),
+                    'data' => new \DateTime()
+                ));
     }
     
     /**

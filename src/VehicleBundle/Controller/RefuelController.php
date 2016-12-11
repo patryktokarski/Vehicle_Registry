@@ -56,7 +56,10 @@ class RefuelController extends Controller
 
         $refuel = new Refuel();
         $form = $this->createFormBuilder($refuel)
-            ->add('date')
+            ->add('date', 'date', [
+                'data' => new \DateTime(),
+                'years' => range(date('Y') -5, date('Y'))
+            ])
             ->add('liters', 'integer', ['required' => false])
             ->add('kilometerStart', 'integer', array(
                   'required' => false,
