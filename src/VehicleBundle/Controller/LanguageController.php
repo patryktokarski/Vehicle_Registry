@@ -16,6 +16,8 @@ class LanguageController extends Controller
 
     public function settingsAction(Request $request) {
 
+        $locale = $request->getLocale();
+
         $form = $this->createFormBuilder()
             ->setAction($this->generateUrl('settings'))
             ->setMethod("POST")
@@ -24,7 +26,8 @@ class LanguageController extends Controller
                     'pl' => 'Polish',
                     'en' => 'English',
                     'de' => 'German',
-                )
+                ),
+                'data' => $locale
             ))
             ->getForm();
 
@@ -42,6 +45,9 @@ class LanguageController extends Controller
             }
         }
 //
-        return ['form' => $form->createView()];
+        return [
+            'form' => $form->createView(),
+            'locale' => $locale
+        ];
     }
 }
