@@ -158,6 +158,7 @@ class RefuelController extends Controller
         $car = $refuel->getCar();
         $id = $car->getId();
 
+        $this->get('session')->getFlashBag()->add('notice', 'Refuel deleted');
         return $this->redirectToRoute('show_vehicle_repo', ['id' => $id]);
     }
 

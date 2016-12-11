@@ -53,6 +53,7 @@ class RepairController extends Controller
             $em->persist($repair);
             $em->flush($repair);
 
+            $this->get('session')->getFlashBag()->add('notice', 'Repair added to report');
             return $this->redirectToRoute('show_vehicle_repo', array('id' => $car[0]->getId()));
         }
 
@@ -123,6 +124,7 @@ class RepairController extends Controller
         $car = $repair->getCar();
         $id = $car->getId();
 
+        $this->get('session')->getFlashBag()->add('notice', 'Repair deleted');
         return $this->redirectToRoute('show_vehicle_repo', ['id' => $id]);
     }
 
