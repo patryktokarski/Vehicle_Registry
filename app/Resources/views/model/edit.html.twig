@@ -1,21 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ 'Model edit'|trans }}{% endblock title %}
+{% block desc %}<a href="{{ path('model_index') }}" class="badge">Back</a>{% endblock desc %}
 {% block body %}
-    <h1>Model edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input type="submit" value="Edit" class="btn btn-success"/>
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('model_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

@@ -51,7 +51,8 @@ class BrandController extends Controller
             $em->persist($brand);
             $em->flush($brand);
 
-            return $this->redirectToRoute('brand_show', array('id' => $brand->getId()));
+            $this->get('session')->getFlashBag()->add('notice', 'Brand created');
+            return $this->redirectToRoute('brand_index');
         }
 
         return $this->render('brand/new.html.twig', array(
@@ -91,6 +92,7 @@ class BrandController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->get('session')->getFlashBag()->add('notice', 'Brand updated');
             return $this->redirectToRoute('brand_edit', array('id' => $brand->getId()));
         }
 

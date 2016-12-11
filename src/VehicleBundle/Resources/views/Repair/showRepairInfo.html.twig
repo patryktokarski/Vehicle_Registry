@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ 'Repair'|trans }}{% endblock %}
+{% block desc %}<a href="{{ path('show_vehicle_info', { 'id': repair[0].car.id }) }}" class="badge">{{ 'Back'|trans }}</a>{% endblock desc %}
 {% block body %}
 
     <table class="table text-center table-bordered text-justify">
@@ -21,5 +22,5 @@
             {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('show_vehicle_info', { 'id': repair[0].car.id }) }}" class="btn bg-primary">{{ 'Back'|trans }}</a>
+
 {% endblock %}

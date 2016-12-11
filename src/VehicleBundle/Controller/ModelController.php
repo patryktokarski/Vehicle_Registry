@@ -26,10 +26,7 @@ class ModelController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $brands = $em->getRepository("VehicleBundle:Brand")->findAll();
-
         $models = $em->getRepository('VehicleBundle:Model')->findAll();
-
         
         return $this->render('model/index.html.twig', array(
             'models' => $models,
@@ -54,7 +51,8 @@ class ModelController extends Controller
             $em->persist($model);
             $em->flush($model);
 
-            return $this->redirectToRoute('model_show', array('id' => $model->getId()));
+            $this->get('session')->getFlashBag()->add('notice', 'Model created');
+            return $this->redirectToRoute('model_index');
         }
 
         return $this->render('model/new.html.twig', array(
@@ -94,7 +92,8 @@ class ModelController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('model_edit', array('id' => $model->getId()));
+            $this->get('session')->getFlashBag()->add('notice', 'Model updated');
+            return $this->redirectToRoute('model_index');
         }
 
         return $this->render('model/edit.html.twig', array(

@@ -1,10 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Models list{% endblock title %}
+{% block desc %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        {{ flashMessage }}
+    {% endfor %}
+{% endblock desc %}
 {% block body %}
-    <h1>Models list</h1>
 
-    <table class="table">
-        <thead>
+    <a href="{{ path('model_new') }}" class="btn btn-primary">Create a new model</a><hr>
+    <table class="table text-center table-bordered text-justify">
+        <thead class="popover-title">
             <tr>
                 <th>Brand</th>
                 <th>Model</th>
@@ -14,26 +20,12 @@
         <tbody>
         {% for model in models %}
             <tr>
-                <td><a href="{{ path('model_show', { 'id': model.id }) }}">{{ model.id }}</a></td>
+                <td>{{ model.brand }}</td>
                 <td>{{ model.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('model_show', { 'id': model.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('model_edit', { 'id': model.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td><a href="{{ path('model_edit', { 'id': model.id }) }}" class="btn btn-primary">Edit</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('model_new') }}">Create a new model</a>
-        </li>
-    </ul>
 {% endblock %}
