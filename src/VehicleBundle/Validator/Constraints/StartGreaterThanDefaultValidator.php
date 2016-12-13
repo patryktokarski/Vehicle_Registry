@@ -9,14 +9,13 @@ class StartGreaterThanDefaultValidator extends ConstraintValidator {
 
     public function  validate($value, Constraint $constraint) {
 
-//        $newValue = $value;
-//        $lastEndKm = $constraint->getLastEndKm();
-//
-//        if ($newValue < $lastEndKm) {
-//
-//            $this->context->buildViolation($constraint->message)
-//                ->setParameter("%value%", $constraint->lastEndKm)
-//                ->addViolation();
-//        }
+        $newValue = $value;
+        $lastEndKm = $constraint->getLastEndKm();
+        if ($newValue < $lastEndKm) {
+
+            $this->context->buildViolation($constraint->message)
+                ->setParameter("%value%", $lastEndKm)
+                ->addViolation();
+        }
     }
 }

@@ -51,7 +51,6 @@ class Refuel
      * @Assert\NotBlank(
      *     message = "This value cannot be empty"
      * )
-     * @AcmeAssert\StartGreaterThanDefault()
      */
     private $kilometerStart;
 
