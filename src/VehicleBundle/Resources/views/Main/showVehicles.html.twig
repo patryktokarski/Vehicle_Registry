@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {% if cars is empty %}
+    {% if carsNum is empty %}
         {{ 'No results found'|trans }}.
-    {% elseif (cars|length) == 1 %}
-        {{ cars|length}} {{ 'result found'|trans }}.
+    {% elseif carsNum == 1 %}
+        {{ carsNum }} {{ 'result found'|trans }}.
     {% else %}
-        {{ cars|length}} {{ 'results found'|trans }}.
+        {{ carsNum }} {{ 'results found'|trans }}.
     {% endif %}
 {% endblock title %}
 
@@ -39,7 +39,7 @@
         {% endfor %}
             </ul>
         </li>
-            <small><small>* {{ 'all reported repairs'|trans }} </small></small>.
+            <small><small>* {{ 'all reported repairs'|trans }}</small></small>.
         {% endif %}
     </ul>
 {% endblock desc %}
@@ -66,10 +66,13 @@
                 <td>{{ car.capacity }}</td>
                 <td>{{ car.power }}</td>
                 <td>{{ car.user.username }}</td>
-                <td>{{ (carsTotalAvg[loop.index-1])|number_format(1, '.') }}</td>
+                <td>{{ car.avgFuelConsumption|number_format('1', '.') }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <div class="navigation text-center">
+        {{ knp_pagination_render(cars) }}
+    </div>
 {% endblock body %}       
 

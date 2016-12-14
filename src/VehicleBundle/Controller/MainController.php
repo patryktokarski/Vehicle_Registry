@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 
 class MainController extends Controller
@@ -17,16 +16,21 @@ class MainController extends Controller
      * @Template()
      */
 
-    public function mainAction() {
-        
-        $form = $this->createFormBuilder()
-                ->setAction($this->generateUrl('show_vehicles'))
-                ->setMethod('POST')
-                ->add('Brand', 'entity', array(
+    public function mainAction(Request $request) {
+
+        $form = $this->get('form.factory')->createNamedBuilder('', 'form', array(
+                'csrf_protection' => false,
+            ))
+                ->setAction($this->generateUrl('show_vehicles', array(
+                    'brand' => $request->query->get('brand'),
+                    'model' => $request->query->get('model')
+            )))
+                ->setMethod('GET')
+                ->add('brand', 'entity', array(
                     'class' => 'VehicleBundle:Brand',
                     'choice_label' => 'name',
                     'translation_domain' => 'messages'))
-                ->add('Model', 'entity', array(
+                ->add('model', 'entity', array(
                     'class' => 'VehicleBundle:Model',
                     'choice_label' => 'name',
                     'translation_domain' => 'messages'))
@@ -34,7 +38,6 @@ class MainController extends Controller
 
         return $this->render('VehicleBundle:Main:main.html.twig', [
             'form' => $form->createView()]);
-        
     }  
     
     /**
@@ -43,8 +46,7 @@ class MainController extends Controller
      * @return type
      * @Template()
      */
-    
-    
+
     public function updateFormAction (Request $request) {
 
         $brandId = $request->request->get("brandId");
@@ -60,22 +62,29 @@ class MainController extends Controller
         return ['models' => $models];
     }
     
-    
     /**
      * @Route("/showVehicles", name = "show_vehicles")
-     * @Method("POST")
      * @Template()
      */
     
-    public function showVehiclesAction (Request $request) {
+    public function showVehiclesAction (Request $request, $page) {
 
         $em = $this->getDoctrine()->getManager();
-
-        $brandId = $request->get('form')['Brand'];
-        $modelId = $request->get('form')['Model'];
+        $brandId = $request->query->get('brand');
+        $modelId = $request->query->get('model');
         $brand = $em->getRepository("VehicleBundle:Brand")->findById($brandId);
         $model = $em->getRepository("VehicleBundle:Model")->findById($modelId);
         $cars = $em->getRepository("VehicleBundle:Car")->findBy(array('brand' => $brand, 'model' => $model));
+        $carsNum = count($cars);
+        /**
+         * @var $paginator \KNP\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $cars,
+            $request->query->getInt('page', $page),
+            $request->query->getInt('limit', 3)
+        );
 
         $carsTotalAvg = [];
         $allRepairCategoryIds = [];
@@ -100,6 +109,7 @@ class MainController extends Controller
             if ($i != 0) {
                 $totalAvg = $totalFuel/$i;
                 $carsTotalAvg[] = $totalAvg;
+                $car->setAvgFuelConsumption($totalAvg);
             } else {
                 $carsTotalAvg[] = 0;
             }
@@ -121,13 +131,15 @@ class MainController extends Controller
             $topCategories = [];
             $allRepairs = 0;
         }
-        return ["cars" => $cars,
+        return [
+            'cars' => $result,
             'brand' => $brand,
             'model' => $model,
             'carsTotalAvg' => $carsTotalAvg,
             'topCategories' => $topCategories,
             'number' => $number,
-            'allRepairs' => $allRepairs
+            'allRepairs' => $allRepairs,
+            'carsNum' => $carsNum
         ];
     }
 }

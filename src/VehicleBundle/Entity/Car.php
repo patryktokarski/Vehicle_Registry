@@ -326,6 +326,8 @@ class Car
         return $this->firstRegistration;
     }
 
+    public $avgFuelConsumption;
+
     /**
      * Set avgFuelConsumption
      *

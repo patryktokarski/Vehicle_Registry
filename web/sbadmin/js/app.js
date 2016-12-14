@@ -3,14 +3,14 @@ $(document).ready(function() {
 //    var endpoint = window.location + '../../../src/VehicleBundle/Controller/MainController.php';
     
     
-    var selectModel = $(document).find('form.form-horizontal').find('select#form_Model');
+    var selectModel = $(document).find('form.form-horizontal').find('select#model');
     var optionModel = selectModel.find('option');
     optionModel.remove();
     
     function loadForm() {
         
-        var brand = $(document).find('form.form-horizontal').find('select#form_Brand').eq(0).val();
-        
+        var brand = $(document).find('form.form-horizontal').find('select#brand').eq(0).val();
+
         $.post('http://127.0.0.1:8000/jsonmodels', {
             brandId: brand
         })
@@ -19,7 +19,7 @@ $(document).ready(function() {
             var models = JSON.parse(json);
             console.log(models);
             
-            var selectModel = $(document).find('form.form-horizontal').find('select#form_Model');
+            var selectModel = $(document).find('form.form-horizontal').find('select#model');
             var optionModel = selectModel.find('option');
             optionModel.remove();
             for ( var i = 0; i < models.length; i++) {
@@ -50,7 +50,7 @@ $(document).ready(function() {
             var models = JSON.parse(json);
             console.log(models);
             
-            var selectModel = $(document).find('form.form-horizontal').find('select#form_Model');
+            var selectModel = $(document).find('form.form-horizontal').find('select#model');
             var optionModel = selectModel.find('option');
             optionModel.remove();
             for ( var i = 0; i < models.length; i++) {
@@ -68,7 +68,7 @@ $(document).ready(function() {
         
     };
 
-    var selectBrand = $(document).find('form.form-horizontal').find('select#form_Brand');
+    var selectBrand = $(document).find('form.form-horizontal').find('select#brand');
     selectBrand.on('change', function() {
         var brand = $(this).val();
         console.log(brand);

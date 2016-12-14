@@ -6,3 +6,8 @@ vehicle:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+show_vehicles:
+    pattern: /showVehicles/{page}
+    defaults: {_controller: VehicleBundle:Main:showVehicles, page: 1}
+
+
