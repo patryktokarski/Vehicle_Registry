@@ -69,12 +69,35 @@ class MainController extends Controller
     
     public function showVehiclesAction (Request $request, $page) {
 
-        $em = $this->getDoctrine()->getManager();
         $brandId = $request->query->get('brand');
         $modelId = $request->query->get('model');
+        $em = $this->getDoctrine()->getManager();
         $brand = $em->getRepository("VehicleBundle:Brand")->findById($brandId);
         $model = $em->getRepository("VehicleBundle:Model")->findById($modelId);
-        $cars = $em->getRepository("VehicleBundle:Car")->findBy(array('brand' => $brand, 'model' => $model));
+        $brandName = $brand[0]->getName();
+        $modelName = $model[0]->getName();
+        dump($brand[0]->getName(0));
+        dump($model[0]->getName(0));
+
+        $dql ='SELECT c, b, m FROM VehicleBundle:Car c 
+                          JOIN c.brand b
+                          JOIN c.model m
+                          WHERE b.name LIKE :brandName 
+                          AND m.name LIKE :modelName';
+        $query = $em->createQuery($dql)
+            ->setParameter('brandName', $brandName)
+            ->setParameter('modelName', $modelName);
+
+        if ($request->query->getAlnum('min') || $request->query->getAlnum('max')) {
+
+            $dql .= ' AND c.power BETWEEN :min AND :max';
+            $query = $em->createQuery($dql)
+                ->setParameter('brandName', $brandName)
+                ->setParameter('modelName', $modelName)
+                ->setParameter('min', $request->query->get('min'))
+                ->setParameter('max', $request->query->get('max'));
+        }
+        $cars = $query->getResult();
         $carsNum = count($cars);
         /**
          * @var $paginator \KNP\Component\Pager\Paginator

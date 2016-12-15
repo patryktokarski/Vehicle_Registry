@@ -42,6 +42,32 @@
             <small><small>* {{ 'all reported repairs'|trans }}</small></small>.
         {% endif %}
     </ul>
+    <form action="{{ path('show_vehicles') }}" method="GET">
+        <input type="hidden" name ='brand' value="{{ app.request.get('brand') }}">
+        <input type="hidden" name ='model' value="{{ app.request.get('model') }}">
+        <label>Capacity: </label>
+        <input type="number" name="min" placeholder="from">
+        <input type="number" name="max" placeholder="to">
+        <input type="submit" value="Filter Now">
+    </form>
+    <form action="{{ path('show_vehicles') }}" method="GET">
+        <input type="hidden" name ='brand' value="{{ app.request.get('brand') }}">
+        <input type="hidden" name ='model' value="{{ app.request.get('model') }}">
+        <label>Power: </label>
+        <select name="min" placeholder="from">
+            <option value="" disabled selected>from</option>
+            {% for i in range(60, 500, 10) %}
+            <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+        </select>
+        <select name="max" placeholder="to">
+            <option value="" disabled selected>to</option>
+            {% for i in range(60, 500, 10) %}
+            <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Filter Now">
+    </form>
 {% endblock desc %}
 
 {% block body %}
