@@ -76,8 +76,6 @@ class MainController extends Controller
         $model = $em->getRepository("VehicleBundle:Model")->findById($modelId);
         $brandName = $brand[0]->getName();
         $modelName = $model[0]->getName();
-        dump($brand[0]->getName(0));
-        dump($model[0]->getName(0));
 
         $dql ='SELECT c, b, m FROM VehicleBundle:Car c 
                           JOIN c.brand b
@@ -88,15 +86,37 @@ class MainController extends Controller
             ->setParameter('brandName', $brandName)
             ->setParameter('modelName', $modelName);
 
-        if ($request->query->getAlnum('min') || $request->query->getAlnum('max')) {
+        if ($request->query->get('minPower') || $request->query->get('maxPower') ||
+            $request->query->get('minCapacity') || $request->query->get('maxCapacity')) {
+            $minPower = $request->query->get('minPower');
+            $maxPower = $request->query->get('maxPower');
+            if ($minPower == null) {
+                $minPower = 0;
+            }
+            if ($maxPower == null) {
+                $maxPower = 10000;
+            }
 
-            $dql .= ' AND c.power BETWEEN :min AND :max';
+            $minCapacity = $request->query->get('minCapacity');
+            $maxCapacity = $request->query->get('maxCapacity');
+            if ($minCapacity == null) {
+                $minCapacity = 0;
+            }
+            if ($maxCapacity == null) {
+                $maxCapacity = 10;
+            }
+
+            $dql .=' AND c.power BETWEEN :minPower AND :maxPower
+                     AND c.capacity BETWEEN :minCapacity AND :maxCapacity';
             $query = $em->createQuery($dql)
                 ->setParameter('brandName', $brandName)
                 ->setParameter('modelName', $modelName)
-                ->setParameter('min', $request->query->get('min'))
-                ->setParameter('max', $request->query->get('max'));
+                ->setParameter('minCapacity', $minCapacity)
+                ->setParameter('maxCapacity', $maxCapacity)
+                ->setParameter('minPower', $minPower)
+                ->setParameter('maxPower', $maxPower);
         }
+
         $cars = $query->getResult();
         $carsNum = count($cars);
         /**
