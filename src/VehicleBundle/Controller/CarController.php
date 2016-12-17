@@ -5,9 +5,8 @@ namespace VehicleBundle\Controller;
 use VehicleBundle\Entity\Car;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use VehicleBundle\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
@@ -23,11 +22,24 @@ class CarController extends Controller
      * @Route("/", name="car_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $user = $this->getUser()->getUsername();
         $em = $this->getDoctrine()->getManager();
-        $user = $this->getUser();
-        $cars = $em->getRepository('VehicleBundle:Car')->findByUser($user);
+        $dql = 'SELECT c, b, m, u FROM VehicleBundle:Car c
+                JOIN c.brand b
+                JOIN c.model m
+                JOIN c.user u
+                WHERE u.username LIKE :loggedUser';
+        $query = $em->createQuery($dql)
+            ->setParameter('loggedUser', $user);
+
+        $paginator = $this->get('knp_paginator');
+        $cars = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 4)
+        );
 
         return $this->render('car/index.html.twig', array(
             'cars' => $cars,

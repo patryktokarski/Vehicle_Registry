@@ -12,11 +12,11 @@
     <table class="table text-center table-bordered text-justify">
         <thead>
             <tr class="popover-title">
-                <th>{{ 'Brand'|trans }}</th>
-                <th>{{ 'Model'|trans }}</th>
-                <th>{{ 'Capacity'|trans }}</th>
-                <th>{{ 'Power'|trans }}</th>
-                <th>{{ 'First Registration'|trans }}</th>
+                <th>{{ knp_pagination_sortable(cars, 'Brand'|trans, 'b.name') }}</th>
+                <th>{{ knp_pagination_sortable(cars, 'Model'|trans, 'm.name') }}</th>
+                <th>{{ knp_pagination_sortable(cars, 'Capacity'|trans, 'c.capacity') }}</th>
+                <th>{{ knp_pagination_sortable(cars, 'Power'|trans, 'c.power') }}</th>
+                <th>{{ knp_pagination_sortable(cars, 'First Registration'|trans, 'c.firstRegistration') }}</th>
                 <th>{{ 'Actions'|trans }}</th>
             </tr>
         </thead>
@@ -36,5 +36,8 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="navigation text-center">
+        {{ knp_pagination_render(cars) }}
+    </div>
 
 {% endblock %}
